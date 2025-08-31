@@ -13,9 +13,9 @@ import {HackPlanner} from "/hacking/planner";
 
 */
 
-import { drawTable } from "/scripts/hacking/box-drawing";
-import { Batch } from "/scripts/hacking/batch-model";
-import { ServerList, ServerModel } from "/scripts/hacking/server-list";
+import { drawTable } from "/old_scripts/hacking/box-drawing";
+import { Batch } from "/old_scripts/hacking/batch-model";
+import { ServerList, ServerModel } from "/old_scripts/hacking/server-list";
 
 const FLAGS = [
     ["console", false],
