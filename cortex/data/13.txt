@@ -1,1 +1,0 @@
-{"pattern":"starter","maxCharges":50}
