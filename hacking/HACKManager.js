@@ -166,6 +166,14 @@ const portPrograms = [
     "HTTPWorm.exe",
     "SQLInject.exe"
 ];
+
+for (const prog of portPrograms) {
+  if(!ns.fileExists(prog, "home")) {
+      ns.purchaseProgram(prog);
+    }
+  
+}
+  
 const availablePrograms = portPrograms.filter(p => ns.fileExists(p, "home")).length;
 
 const allServers = scanAll(ns);
