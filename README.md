@@ -35,6 +35,7 @@ Welcome to the **BitburnerAI** repository! This repo is a personal coding playgr
 
 
 - Other useful scripts
+```````bash
         - /tools/qq.js - queues a script to run once enough memory is available. "run qq.js <server> <scripts> <threads> <scripts arg1> ......"
         - /tools/connectTo.js - gives the connection command toa server. "run connectTo.js the-hub"
         - /contracts/contractor.js - searchs accessible servers for contracts and automatically completes them. "run /contracts/contractor.js"
