@@ -32,3 +32,10 @@ Welcome to the **BitburnerAI** repository! This repo is a personal coding playgr
         - PSManager.js - automates player server purchases and upgrades. upgrades player servers as money is available
         
         - HNManager.js - automates the purchase and upgrade of the HackNet based on time to repay the upgrade. works best with formulas.exe unlocked but aproximates prior.
+
+
+- Other useful scripts
+        - /tools/qq.js - queues a script to run once enough memory is available. "run qq.js <server> <scripts> <threads> <scripts arg1> ......"
+        - /tools/connectTo.js - gives the connection command toa server. "run connectTo.js the-hub"
+        - /contracts/contractor.js - searchs accessible servers for contracts and automatically completes them. "run /contracts/contractor.js"
+        - /factions/share.js - starts the faction share manager that will run daemons on each server to share all available memory.
