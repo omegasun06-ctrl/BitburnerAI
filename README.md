@@ -7,7 +7,7 @@ Welcome to the **BitburnerAI** repository! This repo is a personal coding playgr
 - Master **Bitburner scripting** to automate and optimize in-game progress.
 - Use **GitHub Copilot** to enhance coding fluency and creativity.
 - Build a personal library of reusable, well-documented scripts.
-- Learn by doing — through experimentation, iteration, and gameplay-driven development.
+- Learn by doing — through experimentation, iteration, and gameplay-driven development. 
 
 ## 🛠️ What's Inside
 
