@@ -1,6 +1,6 @@
 # 🧠 Bitburner + Copilot: Vibe Coding Journey
 
-Welcome to the **BitburnerAI** repository! This repo is a personal coding playground where I explore and grow my **vibe coding skills** using **Bitburner** and **GitHub Copilot**. All scripts and tools here are generated through interactive sessions with the **Bitburner JavaScript Expert Agent**.
+Welcome to the **BitburnerAI** repository! This repo is a personal coding playground where I explore and grow my **vibe coding skills** using **Bitburner** and **GitHub Copilot**. All scripts and tools here are generated through interactive sessions with the custom **Bitburner JavaScript Expert Agent** I configured in copilot.
 
 ## 🎯 Goals
 
