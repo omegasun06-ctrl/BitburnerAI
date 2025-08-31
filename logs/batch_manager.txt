@@ -1,0 +1,699 @@
+2025-08-31T16:49:13.522Z ✅ Batch on home -> rho-construction with 50x threads
+2025-08-31T16:49:13.607Z ✅ Batch on 17-pserv -> rho-construction with 2685x threads
+2025-08-31T16:49:13.668Z ✅ Batch on 19-pserv -> rho-construction with 1350x threads
+2025-08-31T16:49:13.687Z ✅ Batch on 21-pserv -> rho-construction with 1007x threads
+2025-08-31T16:49:13.730Z ✅ Batch on 23-pserv -> rho-construction with 3306x threads
+2025-08-31T16:49:13.772Z ✅ Batch on 0-pserv -> rho-construction with 3564x threads
+2025-08-31T16:49:13.813Z ✅ Batch on 1-pserv -> rho-construction with 2672x threads
+2025-08-31T16:49:13.838Z ✅ Batch on 2-pserv -> rho-construction with 3349x threads
+2025-08-31T16:49:13.858Z ✅ Batch on 3-pserv -> rho-construction with 6043x threads
+2025-08-31T16:49:13.878Z ✅ Batch on 4-pserv -> rho-construction with 815x threads
+2025-08-31T16:49:13.898Z ✅ Batch on 5-pserv -> rho-construction with 3725x threads
+2025-08-31T16:49:13.919Z ✅ Batch on 6-pserv -> rho-construction with 3836x threads
+2025-08-31T16:49:13.938Z ✅ Batch on 7-pserv -> rho-construction with 1670x threads
+2025-08-31T16:49:13.960Z ✅ Batch on 8-pserv -> rho-construction with 7128x threads
+2025-08-31T16:49:13.981Z ✅ Batch on 9-pserv -> rho-construction with 1818x threads
+2025-08-31T16:49:14.000Z ✅ Batch on 10-pserv -> rho-construction with 1616x threads
+2025-08-31T16:49:14.019Z ✅ Batch on 11-pserv -> rho-construction with 4528x threads
+2025-08-31T16:49:14.038Z ✅ Batch on 12-pserv -> rho-construction with 2908x threads
+2025-08-31T16:49:14.057Z ✅ Batch on 13-pserv -> rho-construction with 1945x threads
+2025-08-31T16:49:14.076Z ✅ Batch on 14-pserv -> rho-construction with 1945x threads
+2025-08-31T16:49:14.097Z ✅ Batch on 15-pserv -> rho-construction with 8012x threads
+2025-08-31T16:49:14.116Z ✅ Batch on 16-pserv -> rho-construction with 6165x threads
+2025-08-31T16:49:14.135Z ✅ Batch on 18-pserv -> rho-construction with 9995x threads
+2025-08-31T16:49:14.154Z ✅ Batch on 20-pserv -> rho-construction with 2451x threads
+2025-08-31T16:49:14.173Z ✅ Batch on 22-pserv -> rho-construction with 798x threads
+2025-08-31T16:49:14.197Z ✅ Batch on 24-pserv -> rho-construction with 1758x threads
+2025-08-31T16:49:44.251Z ✅ Batch on 17-pserv -> rho-construction with 524x threads
+2025-08-31T16:49:44.263Z ✅ Batch on 19-pserv -> rho-construction with 263x threads
+2025-08-31T16:49:44.274Z ✅ Batch on 1-pserv -> rho-construction with 522x threads
+2025-08-31T16:49:44.286Z ✅ Batch on 4-pserv -> rho-construction with 159x threads
+2025-08-31T16:49:44.297Z ✅ Batch on 6-pserv -> rho-construction with 749x threads
+2025-08-31T16:49:44.307Z ✅ Batch on 9-pserv -> rho-construction with 355x threads
+2025-08-31T16:49:44.319Z ✅ Batch on 10-pserv -> rho-construction with 315x threads
+2025-08-31T16:49:44.331Z ✅ Batch on 11-pserv -> rho-construction with 885x threads
+2025-08-31T16:49:44.342Z ✅ Batch on 12-pserv -> rho-construction with 568x threads
+2025-08-31T16:49:44.354Z ✅ Batch on 13-pserv -> rho-construction with 380x threads
+2025-08-31T16:49:44.365Z ✅ Batch on 14-pserv -> rho-construction with 380x threads
+2025-08-31T16:49:44.376Z ✅ Batch on 18-pserv -> rho-construction with 1953x threads
+2025-08-31T16:49:44.387Z ✅ Batch on 20-pserv -> rho-construction with 479x threads
+2025-08-31T16:49:44.397Z ✅ Batch on 22-pserv -> rho-construction with 155x threads
+2025-08-31T16:50:14.413Z ✅ Batch on 1-pserv -> rho-construction with 102x threads
+2025-08-31T16:50:14.424Z ✅ Batch on 11-pserv -> rho-construction with 172x threads
+2025-08-31T16:50:14.435Z ✅ Batch on 13-pserv -> rho-construction with 74x threads
+2025-08-31T16:50:14.446Z ✅ Batch on 14-pserv -> rho-construction with 74x threads
+2025-08-31T16:50:14.457Z ✅ Batch on 18-pserv -> rho-construction with 381x threads
+2025-08-31T16:50:14.468Z ✅ Batch on 20-pserv -> rho-construction with 93x threads
+2025-08-31T16:50:44.486Z ✅ Batch on 1-pserv -> rho-construction with 20x threads
+2025-08-31T16:51:14.512Z 🧪 Priming rho-construction on home
+2025-08-31T16:51:14.516Z 🧪 Priming rho-construction on 17-pserv
+2025-08-31T16:51:14.520Z 🧪 Priming rho-construction on 19-pserv
+2025-08-31T16:51:14.523Z 🧪 Priming rho-construction on 21-pserv
+2025-08-31T16:51:14.527Z 🧪 Priming rho-construction on 23-pserv
+2025-08-31T16:51:14.530Z 🧪 Priming rho-construction on 0-pserv
+2025-08-31T16:51:14.534Z 🧪 Priming rho-construction on 1-pserv
+2025-08-31T16:51:14.537Z 🧪 Priming rho-construction on 2-pserv
+2025-08-31T16:51:14.541Z 🧪 Priming rho-construction on 3-pserv
+2025-08-31T16:51:14.544Z 🧪 Priming rho-construction on 4-pserv
+2025-08-31T16:51:14.548Z 🧪 Priming rho-construction on 5-pserv
+2025-08-31T16:51:14.551Z 🧪 Priming rho-construction on 6-pserv
+2025-08-31T16:51:14.555Z 🧪 Priming rho-construction on 7-pserv
+2025-08-31T16:51:14.558Z 🧪 Priming rho-construction on 8-pserv
+2025-08-31T16:51:14.561Z 🧪 Priming rho-construction on 9-pserv
+2025-08-31T16:51:14.565Z 🧪 Priming rho-construction on 10-pserv
+2025-08-31T16:51:14.568Z 🧪 Priming rho-construction on 11-pserv
+2025-08-31T16:51:14.572Z 🧪 Priming rho-construction on 12-pserv
+2025-08-31T16:51:14.575Z 🧪 Priming rho-construction on 13-pserv
+2025-08-31T16:51:14.579Z 🧪 Priming rho-construction on 14-pserv
+2025-08-31T16:51:14.582Z 🧪 Priming rho-construction on 15-pserv
+2025-08-31T16:51:14.587Z 🧪 Priming rho-construction on 16-pserv
+2025-08-31T16:51:14.591Z 🧪 Priming rho-construction on 18-pserv
+2025-08-31T16:51:14.595Z 🧪 Priming rho-construction on 20-pserv
+2025-08-31T16:51:14.598Z 🧪 Priming rho-construction on 22-pserv
+2025-08-31T16:51:14.602Z 🧪 Priming rho-construction on 24-pserv
+2025-08-31T16:51:44.604Z 🧪 Priming rho-construction on home
+2025-08-31T16:52:14.607Z 🧪 Priming rho-construction on home
+2025-08-31T16:52:44.614Z 🧪 Priming rho-construction on home
+2025-08-31T16:53:14.620Z 🧪 Priming rho-construction on home
+2025-08-31T16:53:44.625Z 🧪 Priming rho-construction on home
+2025-08-31T16:54:14.633Z ✅ Batch on home -> rho-construction with 954x threads
+2025-08-31T16:54:14.644Z ✅ Batch on 17-pserv -> rho-construction with 33850x threads
+2025-08-31T16:54:14.655Z ✅ Batch on 19-pserv -> rho-construction with 30779x threads
+2025-08-31T16:54:14.666Z ✅ Batch on 21-pserv -> rho-construction with 27792x threads
+2025-08-31T16:54:14.676Z ✅ Batch on 23-pserv -> rho-construction with 23553x threads
+2025-08-31T16:54:14.688Z ✅ Batch on 0-pserv -> rho-construction with 31221x threads
+2025-08-31T16:54:14.699Z ✅ Batch on 1-pserv -> rho-construction with 30968x threads
+2025-08-31T16:54:14.710Z ✅ Batch on 2-pserv -> rho-construction with 30571x threads
+2025-08-31T16:54:14.722Z ✅ Batch on 3-pserv -> rho-construction with 31757x threads
+2025-08-31T16:54:14.734Z ✅ Batch on 4-pserv -> rho-construction with 32516x threads
+2025-08-31T16:54:14.746Z ✅ Batch on 5-pserv -> rho-construction with 31810x threads
+2025-08-31T16:54:14.757Z ✅ Batch on 6-pserv -> rho-construction with 31596x threads
+2025-08-31T16:54:14.769Z ✅ Batch on 7-pserv -> rho-construction with 30603x threads
+2025-08-31T16:54:14.780Z ✅ Batch on 8-pserv -> rho-construction with 31659x threads
+2025-08-31T16:54:14.791Z ✅ Batch on 9-pserv -> rho-construction with 29151x threads
+2025-08-31T16:54:14.802Z ✅ Batch on 10-pserv -> rho-construction with 31186x threads
+2025-08-31T16:54:14.813Z ✅ Batch on 11-pserv -> rho-construction with 29302x threads
+2025-08-31T16:54:14.824Z ✅ Batch on 12-pserv -> rho-construction with 31002x threads
+2025-08-31T16:54:14.835Z ✅ Batch on 13-pserv -> rho-construction with 27822x threads
+2025-08-31T16:54:14.846Z ✅ Batch on 14-pserv -> rho-construction with 27492x threads
+2025-08-31T16:54:14.857Z ✅ Batch on 15-pserv -> rho-construction with 31317x threads
+2025-08-31T16:54:14.869Z ✅ Batch on 16-pserv -> rho-construction with 34412x threads
+2025-08-31T16:54:14.880Z ✅ Batch on 18-pserv -> rho-construction with 29517x threads
+2025-08-31T16:54:14.890Z ✅ Batch on 20-pserv -> rho-construction with 30675x threads
+2025-08-31T16:54:14.902Z ✅ Batch on 22-pserv -> rho-construction with 29924x threads
+2025-08-31T16:54:14.915Z ✅ Batch on 24-pserv -> rho-construction with 42304x threads
+2025-08-31T16:54:45.151Z ✅ Batch on 17-pserv -> rho-construction with 211x threads
+2025-08-31T16:54:45.163Z ✅ Batch on 19-pserv -> rho-construction with 106x threads
+2025-08-31T16:54:45.174Z ✅ Batch on 21-pserv -> rho-construction with 5430x threads
+2025-08-31T16:54:45.185Z ✅ Batch on 1-pserv -> rho-construction with 210x threads
+2025-08-31T16:54:45.196Z ✅ Batch on 3-pserv -> rho-construction with 6205x threads
+2025-08-31T16:54:45.207Z ✅ Batch on 4-pserv -> rho-construction with 6417x threads
+2025-08-31T16:54:45.220Z ✅ Batch on 6-pserv -> rho-construction with 6475x threads
+2025-08-31T16:54:45.231Z ✅ Batch on 8-pserv -> rho-construction with 6186x threads
+2025-08-31T16:54:45.242Z ✅ Batch on 9-pserv -> rho-construction with 143x threads
+2025-08-31T16:54:45.254Z ✅ Batch on 10-pserv -> rho-construction with 127x threads
+2025-08-31T16:54:45.266Z ✅ Batch on 11-pserv -> rho-construction with 6081x threads
+2025-08-31T16:54:45.277Z ✅ Batch on 12-pserv -> rho-construction with 229x threads
+2025-08-31T16:54:45.288Z ✅ Batch on 13-pserv -> rho-construction with 153x threads
+2025-08-31T16:54:45.299Z ✅ Batch on 14-pserv -> rho-construction with 153x threads
+2025-08-31T16:54:45.311Z ✅ Batch on 16-pserv -> rho-construction with 6724x threads
+2025-08-31T16:54:45.322Z ✅ Batch on 18-pserv -> rho-construction with 786x threads
+2025-08-31T16:54:45.332Z ✅ Batch on 20-pserv -> rho-construction with 6186x threads
+2025-08-31T16:54:45.345Z ✅ Batch on 22-pserv -> rho-construction with 62x threads
+2025-08-31T16:55:15.362Z ✅ Batch on 19-pserv -> rho-construction with 20x threads
+2025-08-31T16:55:15.373Z ✅ Batch on 1-pserv -> rho-construction with 41x threads
+2025-08-31T16:55:15.385Z ✅ Batch on 10-pserv -> rho-construction with 24x threads
+2025-08-31T16:55:15.397Z ✅ Batch on 11-pserv -> rho-construction with 69x threads
+2025-08-31T16:55:15.409Z ✅ Batch on 13-pserv -> rho-construction with 30x threads
+2025-08-31T16:55:15.420Z ✅ Batch on 14-pserv -> rho-construction with 30x threads
+2025-08-31T16:55:15.430Z ✅ Batch on 16-pserv -> rho-construction with 1314x threads
+2025-08-31T16:55:15.441Z ✅ Batch on 18-pserv -> rho-construction with 153x threads
+2025-08-31T16:55:15.453Z ✅ Batch on 20-pserv -> rho-construction with 38x threads
+2025-08-31T16:55:45.466Z ✅ Batch on home -> rho-construction with 757x threads
+2025-08-31T16:55:45.476Z ✅ Batch on 17-pserv -> rho-construction with 23270x threads
+2025-08-31T16:55:45.488Z ✅ Batch on 19-pserv -> rho-construction with 27523x threads
+2025-08-31T16:55:45.499Z ✅ Batch on 21-pserv -> rho-construction with 30030x threads
+2025-08-31T16:55:45.511Z ✅ Batch on 23-pserv -> rho-construction with 33726x threads
+2025-08-31T16:55:45.523Z ✅ Batch on 0-pserv -> rho-construction with 26694x threads
+2025-08-31T16:55:45.534Z ✅ Batch on 1-pserv -> rho-construction with 24380x threads
+2025-08-31T16:55:45.546Z ✅ Batch on 2-pserv -> rho-construction with 25181x threads
+2025-08-31T16:55:45.558Z ✅ Batch on 3-pserv -> rho-construction with 24005x threads
+2025-08-31T16:55:45.570Z ✅ Batch on 4-pserv -> rho-construction with 25431x threads
+2025-08-31T16:55:45.581Z ✅ Batch on 5-pserv -> rho-construction with 27300x threads
+2025-08-31T16:55:45.592Z ✅ Batch on 6-pserv -> rho-construction with 24551x threads
+2025-08-31T16:55:45.603Z ✅ Batch on 7-pserv -> rho-construction with 25783x threads
+2025-08-31T16:55:45.614Z ✅ Batch on 8-pserv -> rho-construction with 24065x threads
+2025-08-31T16:55:45.626Z ✅ Batch on 9-pserv -> rho-construction with 27266x threads
+2025-08-31T16:55:45.637Z ✅ Batch on 10-pserv -> rho-construction with 26212x threads
+2025-08-31T16:55:45.649Z ✅ Batch on 11-pserv -> rho-construction with 26680x threads
+2025-08-31T16:55:45.661Z ✅ Batch on 12-pserv -> rho-construction with 24866x threads
+2025-08-31T16:55:45.672Z ✅ Batch on 13-pserv -> rho-construction with 27379x threads
+2025-08-31T16:55:45.683Z ✅ Batch on 14-pserv -> rho-construction with 27709x threads
+2025-08-31T16:55:45.694Z ✅ Batch on 15-pserv -> rho-construction with 24703x threads
+2025-08-31T16:55:45.706Z ✅ Batch on 16-pserv -> rho-construction with 24499x threads
+2025-08-31T16:55:45.718Z ✅ Batch on 18-pserv -> rho-construction with 26764x threads
+2025-08-31T16:55:45.730Z ✅ Batch on 20-pserv -> rho-construction with 25397x threads
+2025-08-31T16:55:45.742Z ✅ Batch on 22-pserv -> rho-construction with 26535x threads
+2025-08-31T16:55:45.752Z ✅ Batch on 24-pserv -> rho-construction with 17465x threads
+2025-08-31T16:56:15.767Z ✅ Batch on 17-pserv -> rho-construction with 211x threads
+2025-08-31T16:56:15.777Z ✅ Batch on 19-pserv -> rho-construction with 106x threads
+2025-08-31T16:56:15.789Z ✅ Batch on 0-pserv -> rho-construction with 5216x threads
+2025-08-31T16:56:15.800Z ✅ Batch on 1-pserv -> rho-construction with 210x threads
+2025-08-31T16:56:15.811Z ✅ Batch on 2-pserv -> rho-construction with 4920x threads
+2025-08-31T16:56:15.823Z ✅ Batch on 4-pserv -> rho-construction with 5033x threads
+2025-08-31T16:56:15.834Z ✅ Batch on 6-pserv -> rho-construction with 5098x threads
+2025-08-31T16:56:15.845Z ✅ Batch on 9-pserv -> rho-construction with 143x threads
+2025-08-31T16:56:15.856Z ✅ Batch on 10-pserv -> rho-construction with 127x threads
+2025-08-31T16:56:15.867Z ✅ Batch on 11-pserv -> rho-construction with 5569x threads
+2025-08-31T16:56:15.878Z ✅ Batch on 12-pserv -> rho-construction with 228x threads
+2025-08-31T16:56:15.889Z ✅ Batch on 13-pserv -> rho-construction with 153x threads
+2025-08-31T16:56:15.900Z ✅ Batch on 14-pserv -> rho-construction with 153x threads
+2025-08-31T16:56:15.911Z ✅ Batch on 18-pserv -> rho-construction with 6015x threads
+2025-08-31T16:56:15.922Z ✅ Batch on 20-pserv -> rho-construction with 193x threads
+2025-08-31T16:56:15.934Z ✅ Batch on 22-pserv -> rho-construction with 62x threads
+2025-08-31T16:56:15.945Z ✅ Batch on 24-pserv -> rho-construction with 3412x threads
+2025-08-31T16:56:45.958Z ✅ Batch on 17-pserv -> rho-construction with 41x threads
+2025-08-31T16:56:45.971Z ✅ Batch on 0-pserv -> rho-construction with 1019x threads
+2025-08-31T16:56:45.982Z ✅ Batch on 1-pserv -> rho-construction with 41x threads
+2025-08-31T16:56:45.995Z ✅ Batch on 9-pserv -> rho-construction with 28x threads
+2025-08-31T16:56:46.005Z ✅ Batch on 10-pserv -> rho-construction with 24x threads
+2025-08-31T16:56:46.017Z ✅ Batch on 11-pserv -> rho-construction with 69x threads
+2025-08-31T16:56:46.028Z ✅ Batch on 13-pserv -> rho-construction with 30x threads
+2025-08-31T16:56:46.039Z ✅ Batch on 14-pserv -> rho-construction with 30x threads
+2025-08-31T16:56:46.050Z ✅ Batch on 18-pserv -> rho-construction with 153x threads
+2025-08-31T16:56:46.061Z ✅ Batch on 20-pserv -> rho-construction with 75x threads
+2025-08-31T16:57:16.080Z ✅ Batch on home -> rho-construction with 13x threads
+2025-08-31T16:57:16.092Z ✅ Batch on 1-pserv -> rho-construction with 8x threads
+2025-08-31T16:57:16.103Z ✅ Batch on 9-pserv -> rho-construction with 5x threads
+2025-08-31T16:57:46.117Z 🧪 Priming rho-construction on home
+2025-08-31T16:57:46.118Z 🧪 Priming rho-construction on 19-pserv
+2025-08-31T16:57:46.118Z 🧪 Priming rho-construction on 23-pserv
+2025-08-31T16:57:46.118Z 🧪 Priming rho-construction on 1-pserv
+2025-08-31T16:57:46.119Z 🧪 Priming rho-construction on 5-pserv
+2025-08-31T16:57:46.119Z 🧪 Priming rho-construction on 7-pserv
+2025-08-31T16:57:46.119Z 🧪 Priming rho-construction on 9-pserv
+2025-08-31T16:57:46.119Z 🧪 Priming rho-construction on 12-pserv
+2025-08-31T16:57:46.120Z 🧪 Priming rho-construction on 13-pserv
+2025-08-31T16:57:46.120Z 🧪 Priming rho-construction on 15-pserv
+2025-08-31T16:57:46.120Z 🧪 Priming rho-construction on 16-pserv
+2025-08-31T16:57:46.120Z 🧪 Priming rho-construction on 22-pserv
+2025-08-31T16:58:16.123Z 🧪 Priming rho-construction on 19-pserv
+2025-08-31T16:58:46.126Z 🧪 Priming rho-construction on 17-pserv
+2025-08-31T16:59:16.131Z 🧪 Priming rho-construction on home
+2025-08-31T16:59:46.136Z 🧪 Priming rho-construction on home
+2025-08-31T17:00:16.138Z 🧪 Priming rho-construction on home
+2025-08-31T17:00:46.141Z ✅ Batch on home -> rho-construction with 305x threads
+2025-08-31T17:00:46.152Z ✅ Batch on 17-pserv -> rho-construction with 9361x threads
+2025-08-31T17:00:46.163Z ✅ Batch on 19-pserv -> rho-construction with 11072x threads
+2025-08-31T17:00:46.174Z ✅ Batch on 21-pserv -> rho-construction with 12081x threads
+2025-08-31T17:00:46.184Z ✅ Batch on 23-pserv -> rho-construction with 13567x threads
+2025-08-31T17:00:46.195Z ✅ Batch on 0-pserv -> rho-construction with 10739x threads
+2025-08-31T17:00:46.207Z ✅ Batch on 1-pserv -> rho-construction with 9808x threads
+2025-08-31T17:00:46.217Z ✅ Batch on 2-pserv -> rho-construction with 10130x threads
+2025-08-31T17:00:46.229Z ✅ Batch on 3-pserv -> rho-construction with 9657x threads
+2025-08-31T17:00:46.240Z ✅ Batch on 4-pserv -> rho-construction with 10230x threads
+2025-08-31T17:00:46.251Z ✅ Batch on 5-pserv -> rho-construction with 10982x threads
+2025-08-31T17:00:46.263Z ✅ Batch on 6-pserv -> rho-construction with 9876x threads
+2025-08-31T17:00:46.275Z ✅ Batch on 7-pserv -> rho-construction with 10372x threads
+2025-08-31T17:00:46.285Z ✅ Batch on 8-pserv -> rho-construction with 9681x threads
+2025-08-31T17:00:46.296Z ✅ Batch on 9-pserv -> rho-construction with 10969x threads
+2025-08-31T17:00:46.307Z ✅ Batch on 10-pserv -> rho-construction with 10545x threads
+2025-08-31T17:00:46.318Z ✅ Batch on 11-pserv -> rho-construction with 10733x threads
+2025-08-31T17:00:46.330Z ✅ Batch on 12-pserv -> rho-construction with 10003x threads
+2025-08-31T17:00:46.341Z ✅ Batch on 13-pserv -> rho-construction with 11014x threads
+2025-08-31T17:00:46.352Z ✅ Batch on 14-pserv -> rho-construction with 11147x threads
+2025-08-31T17:00:46.363Z ✅ Batch on 15-pserv -> rho-construction with 9938x threads
+2025-08-31T17:00:46.375Z ✅ Batch on 16-pserv -> rho-construction with 9855x threads
+2025-08-31T17:00:46.386Z ✅ Batch on 18-pserv -> rho-construction with 10767x threads
+2025-08-31T17:00:46.397Z ✅ Batch on 20-pserv -> rho-construction with 10217x threads
+2025-08-31T17:00:46.408Z ✅ Batch on 22-pserv -> rho-construction with 10675x threads
+2025-08-31T17:00:46.420Z ✅ Batch on 24-pserv -> rho-construction with 7026x threads
+2025-08-31T17:01:16.437Z ✅ Batch on 17-pserv -> rho-construction with 85x threads
+2025-08-31T17:01:16.448Z ✅ Batch on 19-pserv -> rho-construction with 43x threads
+2025-08-31T17:01:16.459Z ✅ Batch on 21-pserv -> rho-construction with 2360x threads
+2025-08-31T17:01:16.472Z ✅ Batch on 0-pserv -> rho-construction with 4196x threads
+2025-08-31T17:01:16.484Z ✅ Batch on 1-pserv -> rho-construction with 2001x threads
+2025-08-31T17:01:16.496Z ✅ Batch on 2-pserv -> rho-construction with 1979x threads
+2025-08-31T17:01:16.507Z ✅ Batch on 3-pserv -> rho-construction with 1887x threads
+2025-08-31T17:01:16.518Z ✅ Batch on 4-pserv -> rho-construction with 2025x threads
+2025-08-31T17:01:16.530Z ✅ Batch on 6-pserv -> rho-construction with 2051x threads
+2025-08-31T17:01:16.542Z ✅ Batch on 9-pserv -> rho-construction with 2201x threads
+2025-08-31T17:01:16.553Z ✅ Batch on 10-pserv -> rho-construction with 2111x threads
+2025-08-31T17:01:16.564Z ✅ Batch on 11-pserv -> rho-construction with 2240x threads
+2025-08-31T17:01:16.575Z ✅ Batch on 12-pserv -> rho-construction with 92x threads
+2025-08-31T17:01:16.586Z ✅ Batch on 13-pserv -> rho-construction with 62x threads
+2025-08-31T17:01:16.598Z ✅ Batch on 14-pserv -> rho-construction with 62x threads
+2025-08-31T17:01:16.609Z ✅ Batch on 15-pserv -> rho-construction with 1942x threads
+2025-08-31T17:01:16.621Z ✅ Batch on 18-pserv -> rho-construction with 4523x threads
+2025-08-31T17:01:16.632Z ✅ Batch on 20-pserv -> rho-construction with 78x threads
+2025-08-31T17:01:16.643Z ✅ Batch on 22-pserv -> rho-construction with 2111x threads
+2025-08-31T17:01:16.655Z ✅ Batch on 24-pserv -> rho-construction with 1372x threads
+2025-08-31T17:01:46.671Z ✅ Batch on 17-pserv -> rho-construction with 16x threads
+2025-08-31T17:01:46.683Z ✅ Batch on 19-pserv -> rho-construction with 8x threads
+2025-08-31T17:01:46.694Z ✅ Batch on 0-pserv -> rho-construction with 410x threads
+2025-08-31T17:01:46.706Z ✅ Batch on 1-pserv -> rho-construction with 407x threads
+2025-08-31T17:01:46.717Z ✅ Batch on 3-pserv -> rho-construction with 368x threads
+2025-08-31T17:01:46.729Z ✅ Batch on 9-pserv -> rho-construction with 441x threads
+2025-08-31T17:01:46.740Z ✅ Batch on 10-pserv -> rho-construction with 10x threads
+2025-08-31T17:01:46.751Z ✅ Batch on 11-pserv -> rho-construction with 28x threads
+2025-08-31T17:01:46.762Z ✅ Batch on 13-pserv -> rho-construction with 24x threads
+2025-08-31T17:01:46.774Z ✅ Batch on 14-pserv -> rho-construction with 24x threads
+2025-08-31T17:01:46.785Z ✅ Batch on 15-pserv -> rho-construction with 379x threads
+2025-08-31T17:01:46.797Z ✅ Batch on 18-pserv -> rho-construction with 62x threads
+2025-08-31T17:01:46.808Z ✅ Batch on 20-pserv -> rho-construction with 45x threads
+2025-08-31T17:01:46.820Z ✅ Batch on 22-pserv -> rho-construction with 412x threads
+2025-08-31T17:02:16.833Z ✅ Batch on home -> rho-construction with 310x threads
+2025-08-31T17:02:16.844Z ✅ Batch on 17-pserv -> rho-construction with 9362x threads
+2025-08-31T17:02:16.855Z ✅ Batch on 19-pserv -> rho-construction with 11073x threads
+2025-08-31T17:02:16.866Z ✅ Batch on 21-pserv -> rho-construction with 12081x threads
+2025-08-31T17:02:16.878Z ✅ Batch on 23-pserv -> rho-construction with 13568x threads
+2025-08-31T17:02:16.890Z ✅ Batch on 0-pserv -> rho-construction with 10739x threads
+2025-08-31T17:02:16.902Z ✅ Batch on 1-pserv -> rho-construction with 9811x threads
+2025-08-31T17:02:16.914Z ✅ Batch on 2-pserv -> rho-construction with 10131x threads
+2025-08-31T17:02:16.925Z ✅ Batch on 3-pserv -> rho-construction with 9658x threads
+2025-08-31T17:02:16.936Z ✅ Batch on 4-pserv -> rho-construction with 10231x threads
+2025-08-31T17:02:16.948Z ✅ Batch on 5-pserv -> rho-construction with 10983x threads
+2025-08-31T17:02:16.960Z ✅ Batch on 6-pserv -> rho-construction with 9877x threads
+2025-08-31T17:02:16.971Z ✅ Batch on 7-pserv -> rho-construction with 10373x threads
+2025-08-31T17:02:16.982Z ✅ Batch on 8-pserv -> rho-construction with 9681x threads
+2025-08-31T17:02:16.993Z ✅ Batch on 9-pserv -> rho-construction with 10971x threads
+2025-08-31T17:02:17.004Z ✅ Batch on 10-pserv -> rho-construction with 10545x threads
+2025-08-31T17:02:17.015Z ✅ Batch on 11-pserv -> rho-construction with 10734x threads
+2025-08-31T17:02:17.026Z ✅ Batch on 12-pserv -> rho-construction with 10003x threads
+2025-08-31T17:02:17.038Z ✅ Batch on 13-pserv -> rho-construction with 11014x threads
+2025-08-31T17:02:17.049Z ✅ Batch on 14-pserv -> rho-construction with 11152x threads
+2025-08-31T17:02:17.061Z ✅ Batch on 15-pserv -> rho-construction with 9938x threads
+2025-08-31T17:02:17.072Z ✅ Batch on 16-pserv -> rho-construction with 9856x threads
+2025-08-31T17:02:17.083Z ✅ Batch on 18-pserv -> rho-construction with 10767x threads
+2025-08-31T17:02:17.095Z ✅ Batch on 20-pserv -> rho-construction with 10217x threads
+2025-08-31T17:02:17.106Z ✅ Batch on 22-pserv -> rho-construction with 10675x threads
+2025-08-31T17:02:17.117Z ✅ Batch on 24-pserv -> rho-construction with 7027x threads
+2025-08-31T17:02:47.132Z 🧪 Priming rho-construction on home
+2025-08-31T17:02:47.140Z 🧪 Priming rho-construction on 19-pserv
+2025-08-31T17:02:47.140Z 🧪 Priming rho-construction on 23-pserv
+2025-08-31T17:02:47.140Z 🧪 Priming rho-construction on 0-pserv
+2025-08-31T17:02:47.140Z 🧪 Priming rho-construction on 1-pserv
+2025-08-31T17:02:47.140Z 🧪 Priming rho-construction on 2-pserv
+2025-08-31T17:02:47.141Z 🧪 Priming rho-construction on 4-pserv
+2025-08-31T17:02:47.141Z 🧪 Priming rho-construction on 6-pserv
+2025-08-31T17:02:47.141Z 🧪 Priming rho-construction on 7-pserv
+2025-08-31T17:02:47.141Z 🧪 Priming rho-construction on 10-pserv
+2025-08-31T17:02:47.141Z 🧪 Priming rho-construction on 11-pserv
+2025-08-31T17:02:47.141Z 🧪 Priming rho-construction on 13-pserv
+2025-08-31T17:02:47.142Z 🧪 Priming rho-construction on 14-pserv
+2025-08-31T17:02:47.142Z 🧪 Priming rho-construction on 15-pserv
+2025-08-31T17:02:47.142Z 🧪 Priming rho-construction on 18-pserv
+2025-08-31T17:02:47.142Z 🧪 Priming rho-construction on 22-pserv
+2025-08-31T17:02:47.142Z 🧪 Priming rho-construction on 24-pserv
+2025-08-31T17:03:17.147Z 🧪 Priming rho-construction on 17-pserv
+2025-08-31T17:03:17.150Z 🧪 Priming rho-construction on 8-pserv
+2025-08-31T17:03:47.154Z 🧪 Priming rho-construction on home
+2025-08-31T17:04:17.163Z 🧪 Priming rho-construction on home
+2025-08-31T17:04:17.164Z 🧪 Priming rho-construction on 1-pserv
+2025-08-31T17:04:17.164Z 🧪 Priming rho-construction on 8-pserv
+2025-08-31T17:04:17.165Z 🧪 Priming rho-construction on 15-pserv
+2025-08-31T17:04:17.165Z 🧪 Priming rho-construction on 22-pserv
+2025-08-31T17:04:47.169Z 🧪 Priming rho-construction on 22-pserv
+2025-08-31T17:05:17.171Z 🧪 Priming rho-construction on 22-pserv
+2025-08-31T17:05:47.173Z 🧪 Priming rho-construction on 22-pserv
+2025-08-31T17:06:17.177Z 🧪 Priming rho-construction on 22-pserv
+2025-08-31T17:06:47.186Z ✅ Batch on home -> rho-construction with 89x threads
+2025-08-31T17:06:47.196Z ✅ Batch on 17-pserv -> rho-construction with 4547x threads
+2025-08-31T17:06:47.207Z ✅ Batch on 19-pserv -> rho-construction with 5320x threads
+2025-08-31T17:06:47.217Z ✅ Batch on 21-pserv -> rho-construction with 5868x threads
+2025-08-31T17:06:47.229Z ✅ Batch on 23-pserv -> rho-construction with 6532x threads
+2025-08-31T17:06:47.240Z ✅ Batch on 1-pserv -> rho-construction with 4706x threads
+2025-08-31T17:06:47.252Z ✅ Batch on 3-pserv -> rho-construction with 4691x threads
+2025-08-31T17:06:47.263Z ✅ Batch on 5-pserv -> rho-construction with 5276x threads
+2025-08-31T17:06:47.274Z ✅ Batch on 7-pserv -> rho-construction with 4980x threads
+2025-08-31T17:06:47.285Z ✅ Batch on 8-pserv -> rho-construction with 4702x threads
+2025-08-31T17:06:47.296Z ✅ Batch on 9-pserv -> rho-construction with 5270x threads
+2025-08-31T17:06:47.308Z ✅ Batch on 10-pserv -> rho-construction with 5122x threads
+2025-08-31T17:06:47.320Z ✅ Batch on 12-pserv -> rho-construction with 4801x threads
+2025-08-31T17:06:47.332Z ✅ Batch on 13-pserv -> rho-construction with 5292x threads
+2025-08-31T17:06:47.343Z ✅ Batch on 14-pserv -> rho-construction with 5414x threads
+2025-08-31T17:06:47.354Z ✅ Batch on 15-pserv -> rho-construction with 4769x threads
+2025-08-31T17:06:47.365Z ✅ Batch on 16-pserv -> rho-construction with 4729x threads
+2025-08-31T17:06:47.375Z ✅ Batch on 20-pserv -> rho-construction with 4963x threads
+2025-08-31T17:06:47.387Z ✅ Batch on 22-pserv -> rho-construction with 5128x threads
+2025-08-31T17:07:17.401Z ✅ Batch on home -> rho-construction with 125x threads
+2025-08-31T17:07:17.412Z ✅ Batch on 17-pserv -> rho-construction with 3766x threads
+2025-08-31T17:07:17.424Z ✅ Batch on 19-pserv -> rho-construction with 4455x threads
+2025-08-31T17:07:17.435Z ✅ Batch on 21-pserv -> rho-construction with 4860x threads
+2025-08-31T17:07:17.447Z ✅ Batch on 23-pserv -> rho-construction with 5458x threads
+2025-08-31T17:07:17.458Z ✅ Batch on 0-pserv -> rho-construction with 4320x threads
+2025-08-31T17:07:17.468Z ✅ Batch on 1-pserv -> rho-construction with 3947x threads
+2025-08-31T17:07:17.479Z ✅ Batch on 2-pserv -> rho-construction with 5036x threads
+2025-08-31T17:07:17.490Z ✅ Batch on 3-pserv -> rho-construction with 3885x threads
+2025-08-31T17:07:17.502Z ✅ Batch on 4-pserv -> rho-construction with 5099x threads
+2025-08-31T17:07:17.515Z ✅ Batch on 5-pserv -> rho-construction with 4419x threads
+2025-08-31T17:07:17.525Z ✅ Batch on 6-pserv -> rho-construction with 4970x threads
+2025-08-31T17:07:17.536Z ✅ Batch on 7-pserv -> rho-construction with 4173x threads
+2025-08-31T17:07:17.546Z ✅ Batch on 8-pserv -> rho-construction with 3895x threads
+2025-08-31T17:07:17.557Z ✅ Batch on 9-pserv -> rho-construction with 4414x threads
+2025-08-31T17:07:17.568Z ✅ Batch on 10-pserv -> rho-construction with 4243x threads
+2025-08-31T17:07:17.579Z ✅ Batch on 11-pserv -> rho-construction with 5407x threads
+2025-08-31T17:07:17.590Z ✅ Batch on 12-pserv -> rho-construction with 4069x threads
+2025-08-31T17:07:17.600Z ✅ Batch on 13-pserv -> rho-construction with 5495x threads
+2025-08-31T17:07:17.612Z ✅ Batch on 14-pserv -> rho-construction with 4517x threads
+2025-08-31T17:07:17.622Z ✅ Batch on 15-pserv -> rho-construction with 3998x threads
+2025-08-31T17:07:17.633Z ✅ Batch on 16-pserv -> rho-construction with 3965x threads
+2025-08-31T17:07:17.644Z ✅ Batch on 18-pserv -> rho-construction with 5507x threads
+2025-08-31T17:07:17.657Z ✅ Batch on 20-pserv -> rho-construction with 5080x threads
+2025-08-31T17:07:17.667Z ✅ Batch on 22-pserv -> rho-construction with 4308x threads
+2025-08-31T17:07:17.678Z ✅ Batch on 24-pserv -> rho-construction with 3494x threads
+2025-08-31T17:07:47.694Z ✅ Batch on home -> rho-construction with 24x threads
+2025-08-31T17:07:47.706Z ✅ Batch on 19-pserv -> rho-construction with 870x threads
+2025-08-31T17:07:47.717Z ✅ Batch on 9-pserv -> rho-construction with 862x threads
+2025-08-31T17:07:47.728Z ✅ Batch on 10-pserv -> rho-construction with 829x threads
+2025-08-31T17:07:47.739Z ✅ Batch on 11-pserv -> rho-construction with 1056x threads
+2025-08-31T17:07:47.750Z ✅ Batch on 13-pserv -> rho-construction with 1073x threads
+2025-08-31T17:07:47.760Z ✅ Batch on 14-pserv -> rho-construction with 882x threads
+2025-08-31T17:07:47.771Z ✅ Batch on 20-pserv -> rho-construction with 992x threads
+2025-08-31T17:07:47.781Z ✅ Batch on 22-pserv -> rho-construction with 841x threads
+2025-08-31T17:08:17.796Z ✅ Batch on 0-pserv -> rho-construction with 143x threads
+2025-08-31T17:08:17.807Z ✅ Batch on 1-pserv -> rho-construction with 8x threads
+2025-08-31T17:08:17.818Z ✅ Batch on 10-pserv -> rho-construction with 166x threads
+2025-08-31T17:08:17.829Z ✅ Batch on 11-pserv -> rho-construction with 14x threads
+2025-08-31T17:08:17.840Z ✅ Batch on 13-pserv -> rho-construction with 6x threads
+2025-08-31T17:08:17.851Z ✅ Batch on 14-pserv -> rho-construction with 6x threads
+2025-08-31T17:08:17.862Z ✅ Batch on 18-pserv -> rho-construction with 30x threads
+2025-08-31T17:08:17.874Z ✅ Batch on 20-pserv -> rho-construction with 15x threads
+2025-08-31T17:08:47.887Z ✅ Batch on home -> rho-construction with 184x threads
+2025-08-31T17:08:47.898Z ✅ Batch on 17-pserv -> rho-construction with 3767x threads
+2025-08-31T17:08:47.908Z ✅ Batch on 19-pserv -> rho-construction with 4513x threads
+2025-08-31T17:08:47.921Z ✅ Batch on 21-pserv -> rho-construction with 4860x threads
+2025-08-31T17:08:47.931Z ✅ Batch on 23-pserv -> rho-construction with 5517x threads
+2025-08-31T17:08:47.942Z ✅ Batch on 0-pserv -> rho-construction with 4348x threads
+2025-08-31T17:08:47.954Z ✅ Batch on 1-pserv -> rho-construction with 4005x threads
+2025-08-31T17:08:47.964Z ✅ Batch on 2-pserv -> rho-construction with 4076x threads
+2025-08-31T17:08:47.976Z ✅ Batch on 3-pserv -> rho-construction with 3886x threads
+2025-08-31T17:08:47.986Z ✅ Batch on 4-pserv -> rho-construction with 4116x threads
+2025-08-31T17:08:47.997Z ✅ Batch on 5-pserv -> rho-construction with 4477x threads
+2025-08-31T17:08:48.008Z ✅ Batch on 6-pserv -> rho-construction with 3974x threads
+2025-08-31T17:08:48.018Z ✅ Batch on 7-pserv -> rho-construction with 4231x threads
+2025-08-31T17:08:48.030Z ✅ Batch on 8-pserv -> rho-construction with 3895x threads
+2025-08-31T17:08:48.041Z ✅ Batch on 9-pserv -> rho-construction with 4472x threads
+2025-08-31T17:08:48.052Z ✅ Batch on 10-pserv -> rho-construction with 4243x threads
+2025-08-31T17:08:48.063Z ✅ Batch on 11-pserv -> rho-construction with 4321x threads
+2025-08-31T17:08:48.075Z ✅ Batch on 12-pserv -> rho-construction with 4082x threads
+2025-08-31T17:08:48.087Z ✅ Batch on 13-pserv -> rho-construction with 4489x threads
+2025-08-31T17:08:48.098Z ✅ Batch on 14-pserv -> rho-construction with 4486x threads
+2025-08-31T17:08:48.110Z ✅ Batch on 15-pserv -> rho-construction with 4056x threads
+2025-08-31T17:08:48.121Z ✅ Batch on 16-pserv -> rho-construction with 4023x threads
+2025-08-31T17:08:48.132Z ✅ Batch on 18-pserv -> rho-construction with 4332x threads
+2025-08-31T17:08:48.142Z ✅ Batch on 20-pserv -> rho-construction with 4113x threads
+2025-08-31T17:08:48.152Z ✅ Batch on 22-pserv -> rho-construction with 4352x threads
+2025-08-31T17:08:48.164Z ✅ Batch on 24-pserv -> rho-construction with 2827x threads
+2025-08-31T17:09:18.183Z 🧪 Priming rho-construction on home
+2025-08-31T17:09:18.184Z 🧪 Priming rho-construction on 23-pserv
+2025-08-31T17:09:18.184Z 🧪 Priming rho-construction on 5-pserv
+2025-08-31T17:09:18.184Z 🧪 Priming rho-construction on 8-pserv
+2025-08-31T17:09:18.184Z 🧪 Priming rho-construction on 13-pserv
+2025-08-31T17:09:18.185Z 🧪 Priming rho-construction on 18-pserv
+2025-08-31T17:09:48.190Z 🧪 Priming rho-construction on 17-pserv
+2025-08-31T17:10:18.195Z 🧪 Priming rho-construction on 17-pserv
+2025-08-31T17:10:18.195Z 🧪 Priming rho-construction on 3-pserv
+2025-08-31T17:10:18.195Z 🧪 Priming rho-construction on 6-pserv
+2025-08-31T17:10:18.196Z 🧪 Priming rho-construction on 9-pserv
+2025-08-31T17:10:18.196Z 🧪 Priming rho-construction on 20-pserv
+2025-08-31T17:10:48.199Z 🧪 Priming rho-construction on home
+2025-08-31T17:11:18.205Z ✅ Batch on home -> rho-construction with 133x threads
+2025-08-31T17:11:18.215Z ✅ Batch on 17-pserv -> rho-construction with 6699x threads
+2025-08-31T17:11:18.227Z ✅ Batch on 19-pserv -> rho-construction with 8167x threads
+2025-08-31T17:11:18.237Z ✅ Batch on 23-pserv -> rho-construction with 4549x threads
+2025-08-31T17:11:18.248Z ✅ Batch on 0-pserv -> rho-construction with 8146x threads
+2025-08-31T17:11:18.259Z ✅ Batch on 1-pserv -> rho-construction with 6083x threads
+2025-08-31T17:11:18.271Z ✅ Batch on 2-pserv -> rho-construction with 9879x threads
+2025-08-31T17:11:18.281Z ✅ Batch on 3-pserv -> rho-construction with 1887x threads
+2025-08-31T17:11:18.311Z ✅ Batch on 4-pserv -> rho-construction with 1972x threads
+2025-08-31T17:11:18.321Z ✅ Batch on 5-pserv -> rho-construction with 6216x threads
+2025-08-31T17:11:18.332Z ✅ Batch on 6-pserv -> rho-construction with 1998x threads
+2025-08-31T17:11:18.343Z ✅ Batch on 7-pserv -> rho-construction with 7953x threads
+2025-08-31T17:11:18.355Z ✅ Batch on 9-pserv -> rho-construction with 5754x threads
+2025-08-31T17:11:18.366Z ✅ Batch on 10-pserv -> rho-construction with 6092x threads
+2025-08-31T17:11:18.376Z ✅ Batch on 11-pserv -> rho-construction with 4284x threads
+2025-08-31T17:11:18.387Z ✅ Batch on 12-pserv -> rho-construction with 6150x threads
+2025-08-31T17:11:18.398Z ✅ Batch on 13-pserv -> rho-construction with 5445x threads
+2025-08-31T17:11:18.409Z ✅ Batch on 14-pserv -> rho-construction with 7559x threads
+2025-08-31T17:11:18.421Z ✅ Batch on 15-pserv -> rho-construction with 6066x threads
+2025-08-31T17:11:18.433Z ✅ Batch on 18-pserv -> rho-construction with 8134x threads
+2025-08-31T17:11:18.443Z ✅ Batch on 20-pserv -> rho-construction with 78x threads
+2025-08-31T17:11:18.455Z ✅ Batch on 22-pserv -> rho-construction with 5819x threads
+2025-08-31T17:11:18.466Z ✅ Batch on 24-pserv -> rho-construction with 10959x threads
+2025-08-31T17:11:48.491Z ✅ Batch on home -> rho-construction with 4x threads
+2025-08-31T17:11:48.502Z ✅ Batch on 19-pserv -> rho-construction with 1599x threads
+2025-08-31T17:11:48.514Z ✅ Batch on 1-pserv -> rho-construction with 1200x threads
+2025-08-31T17:11:48.526Z ✅ Batch on 2-pserv -> rho-construction with 1930x threads
+2025-08-31T17:11:48.538Z ✅ Batch on 3-pserv -> rho-construction with 368x threads
+2025-08-31T17:11:48.550Z ✅ Batch on 4-pserv -> rho-construction with 385x threads
+2025-08-31T17:11:48.562Z ✅ Batch on 5-pserv -> rho-construction with 1214x threads
+2025-08-31T17:11:48.573Z ✅ Batch on 6-pserv -> rho-construction with 390x threads
+2025-08-31T17:11:48.586Z ✅ Batch on 8-pserv -> rho-construction with 1x threads
+2025-08-31T17:11:48.597Z ✅ Batch on 9-pserv -> rho-construction with 1126x threads
+2025-08-31T17:11:48.608Z ✅ Batch on 10-pserv -> rho-construction with 1190x threads
+2025-08-31T17:11:48.619Z ✅ Batch on 24-pserv -> rho-construction with 2141x threads
+2025-08-31T17:12:18.631Z ✅ Batch on 17-pserv -> rho-construction with 2572x threads
+2025-08-31T17:12:18.642Z ✅ Batch on 19-pserv -> rho-construction with 1698x threads
+2025-08-31T17:12:18.653Z ✅ Batch on 21-pserv -> rho-construction with 2440x threads
+2025-08-31T17:12:18.664Z ✅ Batch on 23-pserv -> rho-construction with 2983x threads
+2025-08-31T17:12:18.675Z ✅ Batch on 0-pserv -> rho-construction with 2347x threads
+2025-08-31T17:12:18.685Z ✅ Batch on 1-pserv -> rho-construction with 4638x threads
+2025-08-31T17:12:18.696Z ✅ Batch on 2-pserv -> rho-construction with 4276x threads
+2025-08-31T17:12:18.707Z ✅ Batch on 3-pserv -> rho-construction with 4500x threads
+2025-08-31T17:12:18.717Z ✅ Batch on 4-pserv -> rho-construction with 2156x threads
+2025-08-31T17:12:18.728Z ✅ Batch on 5-pserv -> rho-construction with 1152x threads
+2025-08-31T17:12:18.739Z ✅ Batch on 6-pserv -> rho-construction with 3366x threads
+2025-08-31T17:12:18.749Z ✅ Batch on 7-pserv -> rho-construction with 3876x threads
+2025-08-31T17:12:18.760Z ✅ Batch on 8-pserv -> rho-construction with 4334x threads
+2025-08-31T17:12:18.771Z ✅ Batch on 9-pserv -> rho-construction with 3709x threads
+2025-08-31T17:12:18.782Z ✅ Batch on 10-pserv -> rho-construction with 2549x threads
+2025-08-31T17:12:18.794Z ✅ Batch on 11-pserv -> rho-construction with 3397x threads
+2025-08-31T17:12:18.805Z ✅ Batch on 12-pserv -> rho-construction with 3825x threads
+2025-08-31T17:12:18.816Z ✅ Batch on 13-pserv -> rho-construction with 4446x threads
+2025-08-31T17:12:18.828Z ✅ Batch on 14-pserv -> rho-construction with 4680x threads
+2025-08-31T17:12:18.839Z ✅ Batch on 15-pserv -> rho-construction with 4242x threads
+2025-08-31T17:12:18.850Z ✅ Batch on 16-pserv -> rho-construction with 1608x threads
+2025-08-31T17:12:18.861Z ✅ Batch on 18-pserv -> rho-construction with 2029x threads
+2025-08-31T17:12:18.872Z ✅ Batch on 20-pserv -> rho-construction with 3718x threads
+2025-08-31T17:12:18.883Z ✅ Batch on 22-pserv -> rho-construction with 3414x threads
+2025-08-31T17:12:18.895Z ✅ Batch on 24-pserv -> rho-construction with 493x threads
+2025-08-31T17:12:48.908Z ✅ Batch on 19-pserv -> rho-construction with 331x threads
+2025-08-31T17:12:48.918Z ✅ Batch on 1-pserv -> rho-construction with 906x threads
+2025-08-31T17:12:48.929Z ✅ Batch on 6-pserv -> rho-construction with 103x threads
+2025-08-31T17:12:48.941Z ✅ Batch on 7-pserv -> rho-construction with 758x threads
+2025-08-31T17:12:48.953Z ✅ Batch on 8-pserv -> rho-construction with 847x threads
+2025-08-31T17:12:48.964Z ✅ Batch on 9-pserv -> rho-construction with 70x threads
+2025-08-31T17:12:48.975Z ✅ Batch on 10-pserv -> rho-construction with 63x threads
+2025-08-31T17:12:48.986Z ✅ Batch on 11-pserv -> rho-construction with 1x threads
+2025-08-31T17:12:48.997Z ✅ Batch on 12-pserv -> rho-construction with 112x threads
+2025-08-31T17:12:49.008Z ✅ Batch on 13-pserv -> rho-construction with 1x threads
+2025-08-31T17:12:49.019Z ✅ Batch on 14-pserv -> rho-construction with 1x threads
+2025-08-31T17:12:49.030Z ✅ Batch on 15-pserv -> rho-construction with 829x threads
+2025-08-31T17:12:49.041Z ✅ Batch on 16-pserv -> rho-construction with 1x threads
+2025-08-31T17:12:49.052Z ✅ Batch on 18-pserv -> rho-construction with 397x threads
+2025-08-31T17:12:49.063Z ✅ Batch on 20-pserv -> rho-construction with 1x threads
+2025-08-31T17:12:49.074Z ✅ Batch on 22-pserv -> rho-construction with 698x threads
+2025-08-31T17:12:49.085Z ✅ Batch on 24-pserv -> rho-construction with 1x threads
+2025-08-31T17:13:19.099Z ✅ Batch on home -> rho-construction with 42x threads
+2025-08-31T17:13:19.111Z ✅ Batch on 19-pserv -> rho-construction with 54x threads
+2025-08-31T17:13:19.122Z ✅ Batch on 23-pserv -> rho-construction with 54x threads
+2025-08-31T17:13:19.132Z ✅ Batch on 0-pserv -> rho-construction with 53x threads
+2025-08-31T17:13:19.143Z ✅ Batch on 1-pserv -> rho-construction with 53x threads
+2025-08-31T17:13:19.155Z ✅ Batch on 2-pserv -> rho-construction with 53x threads
+2025-08-31T17:13:19.166Z ✅ Batch on 4-pserv -> rho-construction with 54x threads
+2025-08-31T17:13:19.177Z ✅ Batch on 6-pserv -> rho-construction with 53x threads
+2025-08-31T17:13:19.191Z ✅ Batch on 7-pserv -> rho-construction with 53x threads
+2025-08-31T17:13:19.203Z ✅ Batch on 10-pserv -> rho-construction with 65x threads
+2025-08-31T17:13:19.214Z ✅ Batch on 11-pserv -> rho-construction with 53x threads
+2025-08-31T17:13:19.224Z ✅ Batch on 13-pserv -> rho-construction with 54x threads
+2025-08-31T17:13:19.235Z ✅ Batch on 14-pserv -> rho-construction with 53x threads
+2025-08-31T17:13:19.245Z ✅ Batch on 15-pserv -> rho-construction with 54x threads
+2025-08-31T17:13:19.256Z ✅ Batch on 18-pserv -> rho-construction with 53x threads
+2025-08-31T17:13:19.267Z ✅ Batch on 22-pserv -> rho-construction with 53x threads
+2025-08-31T17:13:19.278Z ✅ Batch on 24-pserv -> rho-construction with 52x threads
+2025-08-31T17:13:49.291Z ✅ Batch on home -> rho-construction with 82x threads
+2025-08-31T17:13:49.302Z ✅ Batch on 17-pserv -> rho-construction with 1516x threads
+2025-08-31T17:13:49.313Z ✅ Batch on 19-pserv -> rho-construction with 1826x threads
+2025-08-31T17:13:49.324Z ✅ Batch on 21-pserv -> rho-construction with 1956x threads
+2025-08-31T17:13:49.335Z ✅ Batch on 23-pserv -> rho-construction with 2230x threads
+2025-08-31T17:13:49.346Z ✅ Batch on 0-pserv -> rho-construction with 1749x threads
+2025-08-31T17:13:49.357Z ✅ Batch on 1-pserv -> rho-construction with 1612x threads
+2025-08-31T17:13:49.368Z ✅ Batch on 2-pserv -> rho-construction with 1640x threads
+2025-08-31T17:13:49.379Z ✅ Batch on 3-pserv -> rho-construction with 1563x threads
+2025-08-31T17:13:49.390Z ✅ Batch on 4-pserv -> rho-construction with 1666x threads
+2025-08-31T17:13:49.401Z ✅ Batch on 5-pserv -> rho-construction with 1801x threads
+2025-08-31T17:13:49.413Z ✅ Batch on 6-pserv -> rho-construction with 1599x threads
+2025-08-31T17:13:49.424Z ✅ Batch on 7-pserv -> rho-construction with 1702x threads
+2025-08-31T17:13:49.435Z ✅ Batch on 8-pserv -> rho-construction with 1567x threads
+2025-08-31T17:13:49.447Z ✅ Batch on 9-pserv -> rho-construction with 1799x threads
+2025-08-31T17:13:49.458Z ✅ Batch on 10-pserv -> rho-construction with 1707x threads
+2025-08-31T17:13:49.469Z ✅ Batch on 11-pserv -> rho-construction with 1738x threads
+2025-08-31T17:13:49.480Z ✅ Batch on 12-pserv -> rho-construction with 1642x threads
+2025-08-31T17:13:49.492Z ✅ Batch on 13-pserv -> rho-construction with 1816x threads
+2025-08-31T17:13:49.503Z ✅ Batch on 14-pserv -> rho-construction with 1805x threads
+2025-08-31T17:13:49.514Z ✅ Batch on 15-pserv -> rho-construction with 1642x threads
+2025-08-31T17:13:49.526Z ✅ Batch on 16-pserv -> rho-construction with 1618x threads
+2025-08-31T17:13:49.537Z ✅ Batch on 18-pserv -> rho-construction with 1743x threads
+2025-08-31T17:13:49.548Z ✅ Batch on 20-pserv -> rho-construction with 1655x threads
+2025-08-31T17:13:49.560Z ✅ Batch on 22-pserv -> rho-construction with 1751x threads
+2025-08-31T17:13:49.570Z ✅ Batch on 24-pserv -> rho-construction with 1138x threads
+2025-08-31T17:14:19.594Z ✅ Batch on 17-pserv -> rho-construction with 1816x threads
+2025-08-31T17:14:19.607Z ✅ Batch on 19-pserv -> rho-construction with 357x threads
+2025-08-31T17:14:19.618Z ✅ Batch on 21-pserv -> rho-construction with 2742x threads
+2025-08-31T17:14:19.630Z ✅ Batch on 23-pserv -> rho-construction with 3087x threads
+2025-08-31T17:14:19.641Z ✅ Batch on 0-pserv -> rho-construction with 2099x threads
+2025-08-31T17:14:19.652Z ✅ Batch on 1-pserv -> rho-construction with 2158x threads
+2025-08-31T17:14:19.663Z ✅ Batch on 4-pserv -> rho-construction with 1999x threads
+2025-08-31T17:14:19.675Z ✅ Batch on 5-pserv -> rho-construction with 2146x threads
+2025-08-31T17:14:19.686Z ✅ Batch on 6-pserv -> rho-construction with 1930x threads
+2025-08-31T17:14:19.697Z ✅ Batch on 8-pserv -> rho-construction with 1818x threads
+2025-08-31T17:14:19.708Z ✅ Batch on 9-pserv -> rho-construction with 2144x threads
+2025-08-31T17:14:19.721Z ✅ Batch on 10-pserv -> rho-construction with 2061x threads
+2025-08-31T17:14:19.732Z ✅ Batch on 11-pserv -> rho-construction with 1x threads
+2025-08-31T17:14:19.744Z ✅ Batch on 12-pserv -> rho-construction with 1955x threads
+2025-08-31T17:14:19.755Z ✅ Batch on 13-pserv -> rho-construction with 2152x threads
+2025-08-31T17:14:19.767Z ✅ Batch on 15-pserv -> rho-construction with 1868x threads
+2025-08-31T17:14:19.779Z ✅ Batch on 16-pserv -> rho-construction with 1926x threads
+2025-08-31T17:14:19.801Z ✅ Batch on 18-pserv -> rho-construction with 2104x threads
+2025-08-31T17:14:19.812Z ✅ Batch on 20-pserv -> rho-construction with 1996x threads
+2025-08-31T17:14:19.824Z ✅ Batch on 22-pserv -> rho-construction with 2012x threads
+2025-08-31T17:14:19.835Z ✅ Batch on 24-pserv -> rho-construction with 222x threads
+2025-08-31T17:14:49.848Z ✅ Batch on 19-pserv -> rho-construction with 69x threads
+2025-08-31T17:14:49.859Z ✅ Batch on 23-pserv -> rho-construction with 603x threads
+2025-08-31T17:14:49.870Z ✅ Batch on 10-pserv -> rho-construction with 402x threads
+2025-08-31T17:15:19.884Z 🧪 Priming rho-construction on home
+2025-08-31T17:15:19.885Z 🧪 Priming rho-construction on 21-pserv
+2025-08-31T17:15:19.885Z 🧪 Priming rho-construction on 1-pserv
+2025-08-31T17:15:19.885Z 🧪 Priming rho-construction on 5-pserv
+2025-08-31T17:15:19.886Z 🧪 Priming rho-construction on 8-pserv
+2025-08-31T17:15:19.886Z 🧪 Priming rho-construction on 11-pserv
+2025-08-31T17:15:19.886Z 🧪 Priming rho-construction on 14-pserv
+2025-08-31T17:15:19.887Z 🧪 Priming rho-construction on 20-pserv
+2025-08-31T17:15:49.888Z 🧪 Priming rho-construction on home
+2025-08-31T17:15:49.889Z 🧪 Priming rho-construction on 13-pserv
+2025-08-31T17:16:19.890Z 🧪 Priming rho-construction on home
+2025-08-31T17:16:19.891Z 🧪 Priming rho-construction on 20-pserv
+2025-08-31T17:16:49.902Z ✅ Batch on home -> rho-construction with 119x threads
+2025-08-31T17:16:49.913Z ✅ Batch on 17-pserv -> rho-construction with 2578x threads
+2025-08-31T17:16:49.924Z ✅ Batch on 19-pserv -> rho-construction with 2177x threads
+2025-08-31T17:16:49.937Z ✅ Batch on 23-pserv -> rho-construction with 2614x threads
+2025-08-31T17:16:49.948Z ✅ Batch on 1-pserv -> rho-construction with 75x threads
+2025-08-31T17:16:49.959Z ✅ Batch on 2-pserv -> rho-construction with 1980x threads
+2025-08-31T17:16:49.971Z ✅ Batch on 4-pserv -> rho-construction with 1999x threads
+2025-08-31T17:16:49.983Z ✅ Batch on 5-pserv -> rho-construction with 2983x threads
+2025-08-31T17:16:49.995Z ✅ Batch on 6-pserv -> rho-construction with 2706x threads
+2025-08-31T17:16:50.006Z ✅ Batch on 7-pserv -> rho-construction with 2027x threads
+2025-08-31T17:16:50.017Z ✅ Batch on 8-pserv -> rho-construction with 2689x threads
+2025-08-31T17:16:50.028Z ✅ Batch on 10-pserv -> rho-construction with 939x threads
+2025-08-31T17:16:50.040Z ✅ Batch on 11-pserv -> rho-construction with 2941x threads
+2025-08-31T17:16:50.052Z ✅ Batch on 12-pserv -> rho-construction with 1955x threads
+2025-08-31T17:16:50.063Z ✅ Batch on 13-pserv -> rho-construction with 2117x threads
+2025-08-31T17:16:50.074Z ✅ Batch on 14-pserv -> rho-construction with 2180x threads
+2025-08-31T17:16:50.084Z ✅ Batch on 15-pserv -> rho-construction with 74x threads
+2025-08-31T17:16:50.095Z ✅ Batch on 16-pserv -> rho-construction with 1926x threads
+2025-08-31T17:16:50.106Z ✅ Batch on 18-pserv -> rho-construction with 815x threads
+2025-08-31T17:16:50.117Z ✅ Batch on 20-pserv -> rho-construction with 1997x threads
+2025-08-31T17:16:50.128Z ✅ Batch on 22-pserv -> rho-construction with 73x threads
+2025-08-31T17:16:50.139Z ✅ Batch on 24-pserv -> rho-construction with 1373x threads
+2025-08-31T17:17:20.155Z ✅ Batch on home -> rho-construction with 180x threads
+2025-08-31T17:17:20.167Z ✅ Batch on 17-pserv -> rho-construction with 76x threads
+2025-08-31T17:17:20.178Z ✅ Batch on 2-pserv -> rho-construction with 621x threads
+2025-08-31T17:17:20.189Z ✅ Batch on 5-pserv -> rho-construction with 1x threads
+2025-08-31T17:17:20.200Z ✅ Batch on 8-pserv -> rho-construction with 234x threads
+2025-08-31T17:17:20.211Z ✅ Batch on 12-pserv -> rho-construction with 382x threads
+2025-08-31T17:17:20.223Z ✅ Batch on 13-pserv -> rho-construction with 647x threads
+2025-08-31T17:17:20.235Z ✅ Batch on 14-pserv -> rho-construction with 426x threads
+2025-08-31T17:17:20.245Z ✅ Batch on 22-pserv -> rho-construction with 234x threads
+2025-08-31T17:17:20.256Z ✅ Batch on 24-pserv -> rho-construction with 268x threads
+2025-08-31T17:17:50.269Z ✅ Batch on 17-pserv -> rho-construction with 16x threads
+2025-08-31T17:17:50.281Z ✅ Batch on 19-pserv -> rho-construction with 6x threads
+2025-08-31T17:17:50.292Z ✅ Batch on 2-pserv -> rho-construction with 121x threads
+2025-08-31T17:17:50.305Z ✅ Batch on 12-pserv -> rho-construction with 74x threads
+2025-08-31T17:17:50.317Z ✅ Batch on 14-pserv -> rho-construction with 83x threads
+2025-08-31T17:18:20.333Z ✅ Batch on home -> rho-construction with 17x threads
+2025-08-31T17:18:20.345Z ✅ Batch on 17-pserv -> rho-construction with 104x threads
+2025-08-31T17:18:20.357Z ✅ Batch on 19-pserv -> rho-construction with 74x threads
+2025-08-31T17:18:20.368Z ✅ Batch on 21-pserv -> rho-construction with 1x threads
+2025-08-31T17:18:20.379Z ✅ Batch on 23-pserv -> rho-construction with 22x threads
+2025-08-31T17:18:20.441Z ✅ Batch on 0-pserv -> rho-construction with 22x threads
+2025-08-31T17:18:20.452Z ✅ Batch on 1-pserv -> rho-construction with 22x threads
+2025-08-31T17:18:20.462Z ✅ Batch on 2-pserv -> rho-construction with 22x threads
+2025-08-31T17:18:20.474Z ✅ Batch on 3-pserv -> rho-construction with 1x threads
+2025-08-31T17:18:20.486Z ✅ Batch on 4-pserv -> rho-construction with 54x threads
+2025-08-31T17:18:20.497Z ✅ Batch on 5-pserv -> rho-construction with 1x threads
+2025-08-31T17:18:20.508Z ✅ Batch on 6-pserv -> rho-construction with 66x threads
+2025-08-31T17:18:20.519Z ✅ Batch on 7-pserv -> rho-construction with 21x threads
+2025-08-31T17:18:20.531Z ✅ Batch on 10-pserv -> rho-construction with 27x threads
+2025-08-31T17:18:20.542Z ✅ Batch on 11-pserv -> rho-construction with 22x threads
+2025-08-31T17:18:20.553Z ✅ Batch on 13-pserv -> rho-construction with 22x threads
+2025-08-31T17:18:20.564Z ✅ Batch on 14-pserv -> rho-construction with 21x threads
+2025-08-31T17:18:20.575Z ✅ Batch on 15-pserv -> rho-construction with 22x threads
+2025-08-31T17:18:20.587Z ✅ Batch on 18-pserv -> rho-construction with 21x threads
+2025-08-31T17:18:20.599Z ✅ Batch on 22-pserv -> rho-construction with 21x threads
+2025-08-31T17:18:20.609Z ✅ Batch on 24-pserv -> rho-construction with 21x threads
+2025-08-31T17:18:50.624Z ✅ Batch on home -> rho-construction with 71x threads
+2025-08-31T17:18:50.636Z ✅ Batch on 17-pserv -> rho-construction with 630x threads
+2025-08-31T17:18:50.648Z ✅ Batch on 19-pserv -> rho-construction with 735x threads
+2025-08-31T17:18:50.659Z ✅ Batch on 21-pserv -> rho-construction with 787x threads
+2025-08-31T17:18:50.671Z ✅ Batch on 23-pserv -> rho-construction with 935x threads
+2025-08-31T17:18:50.682Z ✅ Batch on 0-pserv -> rho-construction with 704x threads
+2025-08-31T17:18:50.694Z ✅ Batch on 1-pserv -> rho-construction with 649x threads
+2025-08-31T17:18:50.705Z ✅ Batch on 2-pserv -> rho-construction with 660x threads
+2025-08-31T17:18:50.718Z ✅ Batch on 3-pserv -> rho-construction with 629x threads
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 4-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 5-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 6-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 7-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 8-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 9-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 10-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 11-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 12-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 13-pserv
+2025-08-31T17:18:50.729Z 🧪 Priming rho-construction on 14-pserv
+2025-08-31T17:18:50.730Z 🧪 Priming rho-construction on 15-pserv
+2025-08-31T17:18:50.730Z 🧪 Priming rho-construction on 16-pserv
+2025-08-31T17:18:50.730Z 🧪 Priming rho-construction on 18-pserv
+2025-08-31T17:18:50.730Z 🧪 Priming rho-construction on 20-pserv
+2025-08-31T17:18:50.730Z 🧪 Priming rho-construction on 22-pserv
+2025-08-31T17:18:50.730Z 🧪 Priming rho-construction on 24-pserv
+2025-08-31T17:19:20.739Z ✅ Batch on 17-pserv -> rho-construction with 1248x threads
+2025-08-31T17:19:20.751Z ✅ Batch on 19-pserv -> rho-construction with 143x threads
+2025-08-31T17:19:20.762Z ✅ Batch on 21-pserv -> rho-construction with 1579x threads
+2025-08-31T17:19:20.774Z ✅ Batch on 23-pserv -> rho-construction with 1824x threads
+2025-08-31T17:19:20.786Z ✅ Batch on 0-pserv -> rho-construction with 1303x threads
+2025-08-31T17:19:20.797Z ✅ Batch on 1-pserv -> rho-construction with 868x threads
+2025-08-31T17:19:20.809Z ✅ Batch on 2-pserv -> rho-construction with 835x threads
+2025-08-31T17:19:20.821Z ✅ Batch on 3-pserv -> rho-construction with 879x threads
+2025-08-31T17:19:20.832Z ✅ Batch on 4-pserv -> rho-construction with 1225x threads
+2025-08-31T17:19:20.844Z ✅ Batch on 5-pserv -> rho-construction with 1389x threads
+2025-08-31T17:19:20.855Z ✅ Batch on 6-pserv -> rho-construction with 2090x threads
+2025-08-31T17:19:20.866Z ✅ Batch on 7-pserv -> rho-construction with 685x threads
+2025-08-31T17:19:20.878Z ✅ Batch on 8-pserv -> rho-construction with 1445x threads
+2025-08-31T17:19:20.889Z ✅ Batch on 9-pserv -> rho-construction with 2311x threads
+2025-08-31T17:19:20.900Z ✅ Batch on 10-pserv -> rho-construction with 2019x threads
+2025-08-31T17:19:20.912Z ✅ Batch on 11-pserv -> rho-construction with 1401x threads
+2025-08-31T17:19:20.923Z ✅ Batch on 12-pserv -> rho-construction with 2209x threads
+2025-08-31T17:19:20.935Z ✅ Batch on 13-pserv -> rho-construction with 2643x threads
+2025-08-31T17:19:20.947Z ✅ Batch on 14-pserv -> rho-construction with 1672x threads
+2025-08-31T17:19:20.958Z ✅ Batch on 15-pserv -> rho-construction with 1416x threads
+2025-08-31T17:19:20.969Z ✅ Batch on 16-pserv -> rho-construction with 1740x threads
+2025-08-31T17:19:20.980Z ✅ Batch on 18-pserv -> rho-construction with 1659x threads
+2025-08-31T17:19:20.992Z ✅ Batch on 20-pserv -> rho-construction with 2214x threads
+2025-08-31T17:19:21.003Z ✅ Batch on 22-pserv -> rho-construction with 1560x threads
+2025-08-31T17:19:21.015Z ✅ Batch on 24-pserv -> rho-construction with 696x threads
+2025-08-31T17:19:51.028Z 🧪 Priming rho-construction on home
+2025-08-31T17:19:51.030Z 🧪 Priming rho-construction on 7-pserv
+2025-08-31T17:19:51.031Z 🧪 Priming rho-construction on 14-pserv
+2025-08-31T17:19:51.031Z 🧪 Priming rho-construction on 24-pserv
+2025-08-31T17:20:21.033Z 🧪 Priming rho-construction on home
+2025-08-31T17:20:21.033Z 🧪 Priming rho-construction on 23-pserv
+2025-08-31T17:20:21.034Z 🧪 Priming rho-construction on 4-pserv
+2025-08-31T17:20:21.034Z 🧪 Priming rho-construction on 8-pserv
+2025-08-31T17:20:21.034Z 🧪 Priming rho-construction on 12-pserv
+2025-08-31T17:20:21.034Z 🧪 Priming rho-construction on 18-pserv
+2025-08-31T17:20:51.038Z 🧪 Priming rho-construction on home
+2025-08-31T17:20:51.039Z 🧪 Priming rho-construction on 1-pserv
+2025-08-31T17:20:51.039Z 🧪 Priming rho-construction on 9-pserv
+2025-08-31T17:20:51.040Z 🧪 Priming rho-construction on 18-pserv
