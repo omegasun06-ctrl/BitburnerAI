@@ -33,11 +33,11 @@ for (const oldLog of logsToDelete) {
 
 async function initialize(ns, autoMode, logBoth) {
   const managers = [
-    { prompt: "Start stock market manager?", path: "/newhome/stock-market/STOCKManager.js", name: "Stock Market Manager" },
-    { prompt: "Start PServ Manager?", path: "/newhome/player/PSManager.js", name: "PServ Manager" },
-    { prompt: "Start HackNet manager?", path: "/newhome/hacknet/HNManager.js", name: "HackNet Manager" },
-    { prompt: "Start Hack manager?", path: "/newhome/hacking/HACKManager.js", name: "Hack Manager" },
-    { prompt: "Start Faction Share?", path: "/newhome/factions/share.js", name: "Faction Share" }
+    { prompt: "Start stock market manager?", path: "/stock-market/STOCKManager.js", name: "Stock Market Manager" },
+    { prompt: "Start PServ Manager?", path: "/player/PSManager.js", name: "PServ Manager" },
+    { prompt: "Start HackNet manager?", path: "/hacknet/HNManager.js", name: "HackNet Manager" },
+    { prompt: "Start Hack manager?", path: "/hacking/HACKManager.js", name: "Hack Manager" },
+    { prompt: "Start Faction Share?", path: "/factions/share.js", name: "Faction Share" }
   ];
 
   const runningScripts = ns.ps("home");
@@ -63,18 +63,4 @@ async function initialize(ns, autoMode, logBoth) {
     }
   }
 
-  // Always start crawler
-  // const crawlerPath = "/scripts/hacking/crawler.js";
-  // const crawlerRunning = runningScripts.find(p => p.filename === crawlerPath);
-  // if (crawlerRunning) {
-  //   if (autoMode || await ns.prompt(`Crawler is already running. Kill and restart?`)) {
-  //     ns.kill(crawlerRunning.pid);
-  //     await logBoth(`🛑 Killed existing Crawler (PID: ${crawlerRunning.pid})`);
-  //   } else {
-  //     await logBoth(`⏭️ Skipped Crawler (already running)`);
-  //     return;
-  //   }
-  // }
-  // const crawlerPid = ns.exec(crawlerPath, "home", 1);
-  // await logBoth(`🚀 Started Crawler (PID: ${crawlerPid})`);
 }
