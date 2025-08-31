@@ -19,7 +19,6 @@ Welcome to the **BitburnerAI** repository! This repo is a personal coding playgr
 ## 🚀 Setup Guidance
 
 1. Clone the repository:
-   ```bash
    git clone https://github.com/omegasun06-ctrl/BitburnerAI.git
    load scripts into bitburner using your favorite method
    run MASTER.js to start script managers.
