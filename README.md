@@ -18,17 +18,16 @@ Welcome to the **BitburnerAI** repository! This repo is a personal coding playgr
 
 ## 🚀 Setup Guidance
 
-1. Clone the repository:
+- Clone the repository:
    git clone https://github.com/omegasun06-ctrl/BitburnerAI.git
 
-2. load scripts into bitburner using your favorite method.
+- load scripts into bitburner using your favorite method.
 
-3. run MASTER.js to start script managers.
-        current managers include: 
-        -HACKManager.js - primes the best available target and then launches grow, weaken, and hack batches on the target onced primed from home and player servers. non player servers act as support servers and grow/weaken to help offset hacks. Also handles launching worm on servers to root as they become accessible and copies all needed scripts.
+- run MASTER.js to start script managers.
+        - HACKManager.js - primes the best available target and then launches grow, weaken, and hack batches on the target onced primed from home and player servers. non player servers act as support servers and grow/weaken to help offset hacks. Also handles launching worm on servers to root as they become accessible and copies all needed scripts.
         
-        -STOCKManager.js - automates stocks for both pre and post formula use. post formula is much more accurate. requires WSE APIs to work.
+        - STOCKManager.js - automates stocks for both pre and post formula use. post formula is much more accurate. requires WSE APIs to work.
         
-        -PSManager.js - automates player server purchases and upgrades. upgrades player servers as money is available
+        - PSManager.js - automates player server purchases and upgrades. upgrades player servers as money is available
         
-        -HNManager.js - automates the purchase and upgrade of the HackNet based on time to repay the upgrade. works best with formulas.exe unlocked but aproximates prior.
+        - HNManager.js - automates the purchase and upgrade of the HackNet based on time to repay the upgrade. works best with formulas.exe unlocked but aproximates prior.
