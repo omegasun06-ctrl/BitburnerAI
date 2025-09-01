@@ -75,6 +75,7 @@ export async function main(ns) {
       const maxRam = ns.getServerMaxRam(server);
       const usedRam = ns.getServerUsedRam(server);
       let freeRam = maxRam - usedRam;
+      if (server === "home") freeRam = Math.max(0, freeRam - 4096);
 
       // Priming phase for active target (only)
       const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
