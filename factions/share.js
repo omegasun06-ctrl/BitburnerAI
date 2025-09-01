@@ -12,10 +12,10 @@ export async function main(ns) {
 	let i = 0;
 	// noinspection InfiniteLoopJS
 	while (true) {
-		const servers = getAccessibleServers(ns);
+		const servers = getAccessibleServers(ns, true); // true = only non-home, non-purchased
 		const freeRams = getFreeRams(ns, servers);
 		findPlaceToRun(ns, script, threads, freeRams, i++);
 		await ns.sleep(5000);
-    ns.exec("/newhome/contracts/contractor.js", "home", 1);
+        ns.exec("/contracts/contractor.js", "home", 1);
 	}
 }

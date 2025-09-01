@@ -774,8 +774,39 @@ export function hackServer(ns, server) {
  * @param {NS} ns
  * @returns {string[]}
  */
-export function getAccessibleServers(ns) {
-	return getServers(ns).filter(server => hackServer(ns, server) && !server.startsWith('hacknet-node-'));
+
+export function getAccessibleServers(ns, onlyFactionServers = false) {
+    const allServers = scanAll(ns);
+    const purchased = ns.getPurchasedServers();
+
+    return allServers.filter(s =>
+        ns.hasRootAccess(s) &&
+        !s.startsWith("hacknet-node-") &&
+        (!onlyFactionServers || (s !== "home" && !purchased.includes(s)))
+    );
+}
+
+
+/**
+ * Recursively scans all servers starting from "home"
+ * @param {NS} ns
+ * @returns {string[]} list of all discovered servers
+ */
+export function scanAll(ns) {
+    const discovered = new Set();
+    const stack = ["home"];
+
+    while (stack.length > 0) {
+        const current = stack.pop();
+        if (!discovered.has(current)) {
+            discovered.add(current);
+            for (const neighbor of ns.scan(current)) {
+                stack.push(neighbor);
+            }
+        }
+    }
+
+    return Array.from(discovered);
 }
 
 /**
