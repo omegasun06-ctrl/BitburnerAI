@@ -1,3 +1,19 @@
+function getAllServers(ns) {
+    const discovered = new Set(["home"]);
+    const queue = ["home"];
+    while (queue.length > 0) {
+        const current = queue.shift();
+        const neighbors = ns.scan(current);
+        for (const neighbor of neighbors) {
+            if (!discovered.has(neighbor)) {
+                discovered.add(neighbor);
+                queue.push(neighbor);
+            }
+        }
+    }
+    return Array.from(discovered);
+}
+
 /** @param {NS} ns **/
 export async function main(ns) {
   const target = ns.args[0];
@@ -29,7 +45,13 @@ export async function main(ns) {
   ns.print(`Weaken Threads Needed: ${weakenThreads}`);
   ns.print(`Grow Threads Needed: ${growThreads}`);
 
-  const servers = ["home", ...ns.getPurchasedServers()];
+const playerServers = ["home", ...ns.getPurchasedServers()];
+const supportServers = getAllServers(ns).filter(s =>
+      !playerServers.includes(s) &&
+      ns.hasRootAccess(s) &&
+      ns.getServerMaxRam(s) > 0
+    );
+  const servers = playerServers.concat(supportServers);
   let weakenLeft = weakenThreads;
   let growLeft = growThreads;
 
@@ -64,3 +86,4 @@ export async function main(ns) {
     ns.print("✅ Optimization scripts launched successfully.");
   }
 }
+

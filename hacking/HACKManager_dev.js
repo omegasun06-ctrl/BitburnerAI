@@ -147,6 +147,31 @@ export async function main(ns) {
         }
         continue;
       }
+    }
+
+    for (const server of supportServers) {
+      await ns.scp([primeScript, batcherScript, "utils.js", ...scripts.map(s => scriptDir + s)], server);
+      const maxRam = ns.getServerMaxRam(server);
+      const usedRam = ns.getServerUsedRam(server);
+      let freeRam = maxRam - usedRam;
+      if (server === "home") freeRam = Math.max(0, freeRam - 4096);
+
+      const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
+      const moneyMax = activeTarget.maxMoney;
+      if (moneyAvailable < moneyMax * 0.95) {
+        const isPriming = ns.ps(server).some(p => p.filename === primeScript && p.args.includes(activeTarget.server));
+        const ramNeeded = ns.getScriptRam(primeScript);
+        if (!isPriming && freeRam >= ramNeeded) {
+          const pid = ns.exec(primeScript, server, 1, activeTarget.server);
+          if (pid !== 0) {
+            const message = `🧪 Priming ${activeTarget.server} on ${server}`;
+            ns.print(message);
+            await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
+            freeRam -= ramNeeded;
+          }
+        }
+        continue;
+      }
 
       const ramHack = ns.getScriptRam(scriptDir + "hack.js");
       const ramGrow = ns.getScriptRam(scriptDir + "grow.js");
