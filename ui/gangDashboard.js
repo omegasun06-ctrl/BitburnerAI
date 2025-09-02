@@ -1,5 +1,5 @@
 /** @param {NS} ns **/
-export async function renderGangDashboard(ns) {
+export async function renderGangDashboard(ns, goal) {
     const gangInfo = ns.gang.getGangInformation();
     const members = ns.gang.getMemberNames();
 
@@ -10,6 +10,7 @@ export async function renderGangDashboard(ns) {
     ns.print("=== 👥 Gang Dashboard ===");
     ns.print(`Gang: ${gangInfo.faction}`);
     ns.print(`Type: ${gangInfo.isHacking ? "Hacking" : "Combat"}`);
+    ns.print(`Current Goal: ${goal}`);
     ns.print(`Members: ${members.length}`);
     ns.print(`Respect Gain Rate: ${gangInfo.respectGainRate.toFixed(2)}`);
     ns.print(`Money Gain Rate: \$${gangInfo.moneyGainRate.toFixed(2)}`);
@@ -35,7 +36,7 @@ export async function renderGangDashboard(ns) {
         taskCounts[task] = (taskCounts[task] || 0) + 1;
     }
 
-    const avg = (val) => (val / members.length).toFixed(1);
+    const avg = (val) => members.length > 0 ? (val / members.length).toFixed(1) : "0.0";
 
     ns.print("=== 📊 Member Summary ===");
     ns.print(`Avg STR: ${avg(totalStats.str)} | DEF: ${avg(totalStats.def)} | DEX: ${avg(totalStats.dex)} | AGI: ${avg(totalStats.agi)} | HACK: ${avg(totalStats.hack)}`);
