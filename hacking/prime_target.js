@@ -68,12 +68,12 @@ const supportServers = getAllServers(ns).filter(s =>
     ns.scp(weakenScript, server);
     ns.scp(growScript, server);
     if (weakenToRun > 0) {
-      ns.exec(weakenScript, server, weakenToRun, target, "batch-prime: "+server);
+      ns.exec(weakenScript, server, weakenToRun, target, "batch-prime: "+ns.getHostname());
       weakenLeft -= weakenToRun;
     }
 
     if (growToRun > 0) {
-      ns.exec(growScript, server, growToRun, target, "batch-prime: "+server);
+      ns.exec(growScript, server, growToRun, target, "batch-prime: "+ns.getHostname());
       growLeft -= growToRun;
     }
 
