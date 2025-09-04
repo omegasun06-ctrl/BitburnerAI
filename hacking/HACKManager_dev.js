@@ -1,4 +1,6 @@
 /** @param {NS} ns **/
+import { contractor } from "/contracts/contractor.js";
+
 export async function main(ns) {
   const scriptDir = "/daemons/";
   const scripts = ["hack.js", "grow.js", "weaken.js"];
@@ -147,32 +149,7 @@ export async function main(ns) {
         }
         continue;
       }
-    }
-
-    for (const server of supportServers) {
-      await ns.scp([primeScript, batcherScript, "utils.js", ...scripts.map(s => scriptDir + s)], server);
-      const maxRam = ns.getServerMaxRam(server);
-      const usedRam = ns.getServerUsedRam(server);
-      let freeRam = maxRam - usedRam;
-      if (server === "home") freeRam = Math.max(0, freeRam - 4096);
-
-      const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
-      const moneyMax = activeTarget.maxMoney;
-      if (moneyAvailable < moneyMax * 0.95) {
-        const isPriming = ns.ps(server).some(p => p.filename === primeScript && p.args.includes(activeTarget.server));
-        const ramNeeded = ns.getScriptRam(primeScript);
-        if (!isPriming && freeRam >= ramNeeded) {
-          const pid = ns.exec(primeScript, server, 1, activeTarget.server);
-          if (pid !== 0) {
-            const message = `🧪 Priming ${activeTarget.server} on ${server}`;
-            ns.print(message);
-            await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
-            freeRam -= ramNeeded;
-          }
-        }
-        continue;
-      }
-
+      
       const ramHack = ns.getScriptRam(scriptDir + "hack.js");
       const ramGrow = ns.getScriptRam(scriptDir + "grow.js");
       const ramWeaken = ns.getScriptRam(scriptDir + "weaken.js");
@@ -219,9 +196,84 @@ export async function main(ns) {
         } else {
           break;
         }
-      }
+      
+    }
     }
 
+    for (const server of supportServers) {
+      await ns.scp([primeScript, batcherScript, "utils.js", ...scripts.map(s => scriptDir + s)], server);
+      const maxRam = ns.getServerMaxRam(server);
+      const usedRam = ns.getServerUsedRam(server);
+      let freeRam = maxRam - usedRam;
+      if (server === "home") freeRam = Math.max(0, freeRam - 4096);
+
+      const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
+      const moneyMax = activeTarget.maxMoney;
+      if (moneyAvailable < moneyMax * 0.95) {
+        const isPriming = ns.ps(server).some(p => p.filename === primeScript && p.args.includes(activeTarget.server));
+        const ramNeeded = ns.getScriptRam(primeScript);
+        if (!isPriming && freeRam >= ramNeeded) {
+          const pid = ns.exec(primeScript, server, 1, activeTarget.server);
+          if (pid !== 0) {
+            const message = `🧪 Priming ${activeTarget.server} on ${server}`;
+            ns.print(message);
+            await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
+            freeRam -= ramNeeded;
+          }
+        }
+        continue;
+      }
+    
+      const ramHack = ns.getScriptRam(scriptDir + "hack.js");
+      const ramGrow = ns.getScriptRam(scriptDir + "grow.js");
+      const ramWeaken = ns.getScriptRam(scriptDir + "weaken.js");
+      const unitRam = ramHack + (2 * ramGrow) + (2 * ramWeaken);
+      if (unitRam <= 0) continue;
+
+      let hackTime = ns.getHackTime(activeTarget.server);
+      let growTime = ns.getGrowTime(activeTarget.server);
+      let weakenTime = ns.getWeakenTime(activeTarget.server);
+      if (ns.fileExists("Formulas.exe", "home")) {
+        const serverObj = ns.getServer(activeTarget.server);
+        const player = ns.getPlayer();
+        hackTime = ns.formulas.hacking.hackTime(serverObj, player);
+        growTime = ns.formulas.hacking.growTime(serverObj, player);
+        weakenTime = ns.formulas.hacking.weakenTime(serverObj, player);
+      }
+
+      while (freeRam >= unitRam) {
+        const scaleFactor = Math.floor(freeRam / unitRam);
+        if (scaleFactor < 1) break;
+
+        const batchId = `batch-${Date.now()}-${server}-${activeTarget.server}`;
+        const pid = ns.exec(
+          batcherScript,
+          server,
+          1,
+          activeTarget.server,
+          batchId,
+          scaleFactor,
+          scaleFactor * 2,
+          scaleFactor,
+          scaleFactor,
+          hackTime,
+          growTime,
+          weakenTime
+        );
+
+        if (pid !== 0) {
+          const message = `✅ Batch on ${server} -> ${activeTarget.server} with ${scaleFactor}x threads`;
+          ns.print(message);
+          await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
+          freeRam -= unitRam * scaleFactor;
+          await ns.sleep(batchSpacing);
+        } else {
+          break;
+        }
+      
+    }
+    }
+    contractor(ns);
     loopCount++;
     ns.print(`🔁 Sleeping for ${loopDelay / 1000} seconds...`);
     await ns.sleep(loopDelay);

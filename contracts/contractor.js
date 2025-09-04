@@ -90,7 +90,10 @@ export function contractor(ns) {
 					break;
 				case 'Compression I: RLE Compression':
 					solution = runLengthEncoding(data);
-					break;
+					break;					
+        		case 'Square Root':
+            		solution = squareRoot(data);
+            		break;
 				case 'Compression II: LZ Decompression':
 					solution = decompressLZ(data);
 					break;
@@ -100,6 +103,21 @@ export function contractor(ns) {
 				case 'Encryption I: Caesar Cipher':
 					solution = caesar(data);
 					break;
+				case 'Find Largest Common Substring':
+          		    solution = findLargestCommonSubstring(data);
+            		break;
+        		case 'Unique Binary Search Trees':
+            		solution = uniqueBinarySearchTrees(data);
+            		break;
+        		case 'Unique Binary Search Trees II':
+            		solution = uniqueBinarySearchTreesII(data);
+            		break;
+        		case 'Number of Ways to Partition a String':
+            		solution = numberOfWaysToPartitionString(data);
+            		break;
+        		case 'Grid Compression':
+            		solution = gridCompression(data);
+            		break;
 				case 'Encryption II: Vigenère Cipher':
 					solution = vigenere(data);
 					break;
@@ -818,3 +836,133 @@ function vigenere(data) {
 	}
 	return result;
 }
+
+function findLargestCommonSubstring([str1, str2]) {
+    let maxLen = 0;
+    let result = '';
+    const dp = Array(str1.length + 1).fill().map(() => Array(str2.length + 1).fill(0));
+    for (let i = 1; i <= str1.length; i++) {
+        for (let j = 1; j <= str2.length; j++) {
+            if (str1[i - 1] === str2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+                if (dp[i][j] > maxLen) {
+                    maxLen = dp[i][j];
+                    result = str1.slice(i - maxLen, i);
+                }
+            }
+        }
+    }
+    return result;
+}
+
+
+function uniqueBinarySearchTrees(n) {
+    const dp = Array(n + 1).fill(0);
+    dp[0] = 1;
+    for (let i = 1; i <= n; i++) {
+        for (let j = 0; j < i; j++) {
+            dp[i] += dp[j] * dp[i - j - 1];
+        }
+    }
+    return dp[n];
+}
+
+function uniqueBinarySearchTreesII(n) {
+    const memo = {};
+    function generateTrees(start, end) {
+        const key = `${start},${end}`;
+        if (memo[key]) return memo[key];
+        const trees = [];
+        if (start > end) {
+            trees.push([]);
+            return trees;
+        }
+        for (let i = start; i <= end; i++) {
+            const leftTrees = generateTrees(start, i - 1);
+            const rightTrees = generateTrees(i + 1, end);
+            for (const left of leftTrees) {
+                for (const right of rightTrees) {
+                    trees.push([i, left, right]);
+                }
+            }
+        }
+        memo[key] = trees;
+        return trees;
+    }
+    return generateTrees(1, n);
+}
+
+function numberOfWaysToPartitionString(s) {
+    const MOD = 1e9 + 7;
+    const n = s.length;
+    const dp = Array(n + 1).fill(0);
+    dp[0] = 1;
+    for (let i = 1; i <= n; i++) {
+        for (let j = i - 1; j >= 0; j--) {
+            const part = s.slice(j, i);
+            if (part[0] === '0') continue;
+            if (j === 0 || part >= s.slice(j - (i - j), j)) {
+                dp[i] = (dp[i] + dp[j]) % MOD;
+            }
+        }
+    }
+    return dp[n];
+}
+
+
+function gridCompression(data) {
+    const [grid] = data;
+    const rows = grid.length;
+    const cols = grid[0].length;
+    const rowMap = new Map();
+    const colMap = new Map();
+    let newRow = 0;
+    let newCol = 0;
+
+    // Compress rows
+    for (let r = 0; r < rows; r++) {
+        const rowStr = grid[r].join('');
+        if (!rowMap.has(rowStr)) {
+            rowMap.set(rowStr, newRow++);
+        }
+    }
+
+    // Compress columns
+    for (let c = 0; c < cols; c++) {
+        let colStr = '';
+        for (let r = 0; r < rows; r++) {
+            colStr += grid[r][c];
+        }
+        if (!colMap.has(colStr)) {
+            colMap.set(colStr, newCol++);
+        }
+    }
+
+    // Build compressed grid
+    const compressedGrid = Array.from({ length: newRow }, () => Array(newCol).fill(''));
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            const compressedR = rowMap.get(grid[r].join(''));
+            const compressedC = colMap.get(
+                Array.from({ length: rows }, (_, i) => grid[i][c]).join('')
+            );
+            compressedGrid[compressedR][compressedC] = grid[r][c];
+        }
+    }
+
+    return compressedGrid.map(row => row.join('')).join(',');
+}
+
+
+function squareRoot(n) {
+    if (n === 0 || n === 1) return n;
+    let low = 0, high = n;
+    while (high - low > 1e-10) {
+        const mid = (low + high) / 2;
+        if (mid * mid > n) high = mid;
+        else low = mid;
+    }
+    return +low.toFixed(10);
+}
+
+
