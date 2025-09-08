@@ -33,10 +33,10 @@ for (const oldLog of logsToDelete) {
 
 async function initialize(ns, autoMode, logBoth) {
   const managers = [
-    { prompt: "Start stock market manager?", path: "/stock-market/STOCKManager.js", name: "Stock Market Manager" },
+    { prompt: "Start Stock Market Manager?", path: "/stock-market/STOCKManager.js", name: "Stock Market Manager" },
     { prompt: "Start PServ Manager?", path: "/player/PSManager.js", name: "PServ Manager" },
-    { prompt: "Start HackNet manager?", path: "/hacknet/HNManager.js", name: "HackNet Manager" },
-    { prompt: "Start Hack manager?", path: "/hacking/HACKManager.js", name: "Hack Manager" },
+    //{ prompt: "Start HackNet manager?", path: "/hacknet/HNManager.js", name: "HackNet Manager" },
+    { prompt: "Start Hack manager?", path: "/hacking/HACKManager_dev.js", name: "Hack Manager" },
     { prompt: "Start Faction Share?", path: "/factions/share.js", name: "Faction Share" }
   ];
 

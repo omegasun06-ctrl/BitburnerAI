@@ -1,7 +1,10 @@
 
 /** @param {NS} ns **/
+/** @require Singularity **/
+
 export async function main(ns) {
     const moneyFocus = ns.args.includes("--money");
+
     const crimes = [
         { name: "Shoplift", karma: 0.1, money: 1500 },
         { name: "Rob store", karma: 0.5, money: 5000 },
@@ -17,22 +20,67 @@ export async function main(ns) {
         { name: "Heist", karma: 12.0, money: 250000 },
     ];
 
+    function initializeKarmaHud() {
+        const d = eval("document");
+        let hudElement = d.getElementById("karma-display-1");
+        if (hudElement !== null) return hudElement;
+
+        const overview = d.getElementById("overview-extra-hook-0").parentElement.parentElement;
+        const karmaTracker = overview.cloneNode(true);
+
+        karmaTracker.querySelectorAll("p > p").forEach(e => e.parentElement.removeChild(e));
+        karmaTracker.querySelectorAll("p").forEach((e, i) => e.id = `karma-display-${i}`);
+
+        hudElement = karmaTracker.querySelector("#karma-display-1");
+        karmaTracker.querySelectorAll("p")[0].innerText = "Karma";
+        hudElement.innerText = "0.00";
+
+        overview.parentElement.insertBefore(karmaTracker, overview.parentElement.childNodes[2]);
+        return hudElement;
+    }
+
+    function updateKarmaHud(ns, hudElement) {
+        const karma = ns.heart.break();
+        hudElement.innerText = karma.toFixed(2);
+    }
+
+    function gangUnlockCheck(ns) {
+        const karma = ns.heart.break();
+        const stats = ns.getPlayer();
+        const combatReady = ["strength", "defense", "dexterity", "agility"]
+            .every(stat => stats[stat] >= 30);
+
+        if (karma <= -54000 && combatReady) {
+            ns.tprint("🚨 Gang unlock conditions met! You can now create a gang.");
+        } else if (karma <= -50000) {
+            ns.print(`⚠️ Karma is low (${karma.toFixed(2)}). Gang unlock approaching...`);
+        }
+    }
+
+    async function trainCombatStats(ns) {
+        const gymCity = "Sector-12";
+        const gymName = "Powerhouse Gym";
+        const statsToTrain = ["Strength", "Defense", "Dexterity", "Agility"];
+
+        if (ns.getPlayer().city !== gymCity) {
+            ns.singularity.travelToCity(gymCity);
+        }
+
+        for (const stat of statsToTrain) {
+            ns.print(`Training ${stat} at ${gymName}...`);
+            await ns.singularity.gymWorkout(gymName, stat, false);
+            await ns.sleep(60000); // train for 1 minute per stat
+        }
+    }
+
+    const hudElement = initializeKarmaHud();
+
     while (true) {
         let bestCrime = null;
         let bestScore = 0;
-        
-         const karma = ns.heart.break();
-        ns.clearPort(1); // optional: if you're using ports for HUD coordination
-        ns.tail(); // optional: opens the script window
-        ns.atExit(() => ns.clearLog()); // optional: clean exit
-
-        // HUD line for Karma
-        ns.print(`Karma: ${karma.toFixed(2)}`);
-        ns.setTitle(`Karma: ${karma.toFixed(2)}`); // This sets the HUD line under CHA
-
 
         for (const crime of crimes) {
-            const chance = ns.getCrimeChance(crime.name);
+            const chance = ns.singularity.getCrimeChance(crime.name);
             const reward = moneyFocus ? crime.money : crime.karma;
             const score = chance * reward;
 
@@ -42,14 +90,19 @@ export async function main(ns) {
             }
         }
 
-        if (bestCrime) {
-            ns.tprint(`Committing: ${bestCrime} (Focus: ${moneyFocus ? "Money" : "Karma"})`);
-            const time = ns.getCrimeStats(bestCrime).time;
-            await ns.commitCrime(bestCrime);
-            await ns.sleep(time + 100); // buffer
-        } else {
-            ns.tprint("No viable crimes found.");
-            await ns.sleep(1000);
+        updateKarmaHud(ns, hudElement);
+        gangUnlockCheck(ns);
+
+        const chance = ns.singularity.getCrimeChance(bestCrime);
+        if (chance < 0.5) {
+            ns.print(`⚠️ Low success chance (${(chance * 100).toFixed(1)}%) for ${bestCrime}. Training combat stats...`);
+            await trainCombatStats(ns);
+            continue;
         }
+
+        ns.print(`Committing: ${bestCrime} (Focus: ${moneyFocus ? "Money" : "Karma"})`);
+        const time = ns.singularity.getCrimeStats(bestCrime).time;
+        await ns.singularity.commitCrime(bestCrime, false);
+        await ns.sleep(time + 100);
     }
 }

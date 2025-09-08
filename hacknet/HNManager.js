@@ -84,7 +84,7 @@ export async function main(ns) {
     // --- Estimation Functions ---
 
     function estimateGainFormulas(ns, stats, type) {
-        const baseProd = ns.formulas.hacknetNodes.produce(stats.level, stats.ram, stats.cores);
+        const baseProd = ns.formulas.hacknetNodes.moneyGainRate(stats.level, stats.ram, stats.cores);
         let newStats = { ...stats };
 
         switch (type) {
@@ -99,12 +99,12 @@ export async function main(ns) {
                 break;
         }
 
-        const newProd = ns.formulas.hacknetNodes.produce(newStats.level, newStats.ram, newStats.cores);
+        const newProd = ns.formulas.hacknetNodes.moneyGainRate(newStats.level, newStats.ram, newStats.cores);
         return newProd - baseProd;
     }
 
     function estimateNewNodeProductionFormulas(ns) {
-        return ns.formulas.hacknetNodes.produce(1, 1, 1);
+        return ns.formulas.hacknetNodes.moneyGainRate(1, 1, 1);
     }
 
     function estimateGainApprox(stats, type) {

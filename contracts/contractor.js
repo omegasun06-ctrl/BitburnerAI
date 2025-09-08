@@ -954,15 +954,38 @@ function gridCompression(data) {
 }
 
 
+
 function squareRoot(n) {
-    if (n === 0 || n === 1) return n;
-    let low = 0, high = n;
-    while (high - low > 1e-10) {
-        const mid = (low + high) / 2;
-        if (mid * mid > n) high = mid;
-        else low = mid;
+    // Convert BigInt to Number safely if needed
+    if (typeof n === 'bigint') {
+        // If n is too large for Number, use Newton's method with BigInt
+        let x = n;
+        let y = (x + 1n) / 2n;
+        while (y < x) {
+            x = y;
+            y = (x + n / x) / 2n;
+        }
+        return x.toString(); // Return as string for Bitburner
     }
-    return +low.toFixed(10);
+
+    // For regular numbers, use binary search
+    let low = 0;
+    let high = n;
+    let mid;
+    let iterations = 0;
+    while (high - low > 1e-10 && iterations < 1000) {
+        mid = (low + high) / 2;
+        if (mid * mid > n) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+        iterations++;
+    }
+
+    return low.toFixed(10); // Return as string with fixed precision
 }
+
+
 
 

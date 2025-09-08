@@ -1,3 +1,4 @@
+import { contractor } from "/contracts/contractor.js";
 /** @param {import(".").NS } ns */
 export async function main(ns) {
   const scriptDir = "/daemons/";
@@ -250,6 +251,7 @@ for (const support of supportServers) {
 
     loopCount++;
     ns.print(`🔁 Sleeping for ${loopDelay / 1000} seconds...`);
+    contractor(ns);
     await ns.sleep(loopDelay);
   }
 }

@@ -23,7 +23,7 @@ export async function main(ns) {
       //&& ns.getServerRequiredHackingLevel(server) <= ns.getHackingLevel()vvvv
 			if (!ns.hasRootAccess(server)  && !IGNORE.includes(server)) {
 				ns.print("attempting to hack ", server)
-				ns.run("/scripts/hacking/worm.js", 1, server)
+				ns.run("/hacking/worm.js", 1, server)
 				await ns.sleep(1000)
 			}
 			let s = ns.scan(server)

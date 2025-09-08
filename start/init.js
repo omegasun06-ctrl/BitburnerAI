@@ -1,10 +1,10 @@
 /** @param {NS} ns */
 import{
-  serversAll,
   servers64MB,
   servers32MB,
   servers16MB
-} from /scripts/arrayRepo.js;
+} from "/old_scripts/arrayRepo.js";
+
 export async function main(ns) {
     // Array of all servers that don't need any ports opened
     // to gain root access. These have 16 GB of RAM
@@ -27,9 +27,10 @@ export async function main(ns) {
     for (let i = 0; i < servers16MB.length; ++i) {
         const serv = servers16MB[i];
 
-        ns.scp("/newhome/start/early-hack-template.js", serv);
-        ns.nuke(serv);
-        ns.exec("/newhome/start/early-hack-template.js", serv, 6);
+        ns.scp("/start/early-hack-template.js", serv);
+        //ns.brutessh(serv);
+       //ns.nuke(serv);
+        ns.exec("/start/early-hack-template.js", serv, 6);
     }
 
     // Wait until we acquire the "BruteSSH.exe" program
@@ -43,18 +44,18 @@ export async function main(ns) {
     for (let i = 0; i < servers32MB.length; ++i) {
         const serv = servers32MB[i];
 
-        ns.scp("/newhome/start/early-hack-template.js", serv);
-        ns.brutessh(serv);
-        ns.nuke(serv);
-        ns.exec("/newhome/start/early-hack-template.js", serv, 12);   
+        ns.scp("/start/early-hack-template.js", serv);
+       // ns.brutessh(serv);
+        //ns.nuke(serv);
+        ns.exec("/start/early-hack-template.js", serv, 12);   
     }
         for (let i = 0; i < servers64MB.length; ++i) {
         const serv = servers64MB[i];
 
-        ns.scp("/newhome/start/early-hack-template.js", serv);
-        ns.brutessh(serv);
-        ns.nuke(serv);
-        ns.exec("/newhome/start/early-hack-template.js", serv, 24);
+        ns.scp("/start/early-hack-template.js", serv);
+        //ns.brutessh(serv);
+        //ns.nuke(serv);
+        ns.exec("/start/early-hack-template.js", serv, 24);
         
     }
 }
