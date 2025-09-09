@@ -1,3 +1,5 @@
 cortex/
 old_scrtipts/
+data/
+logs/
 index.d.ts

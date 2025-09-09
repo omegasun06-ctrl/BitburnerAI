@@ -1,3 +1,8 @@
+function purchaseOrder(a, b) {
+  return Math.ceil(a.timeToCoverTheSpread()) - Math.ceil(b.timeToCoverTheSpread()) ||
+         b.absReturn() - a.absReturn();
+}
+
 
 function format_compact_currency(value) {
   if (value >= 1e9) {
@@ -99,6 +104,7 @@ export async function main(ns) {
   const pre4sBuyThresholdProbability = options['pre-4s-buy-threshold-probability'];
   const pre4sMinBlackoutWindow = options['pre-4s-min-blackout-window'] || 1;
   const pre4sMinHoldTime = options['pre-4s-minimum-hold-time'] || 0;
+  const pre4s = !ns.stock.has4SDataTIXAPI();
   minTickHistory = options['pre-4s-min-tick-history'] || 21;
   nearTermForecastWindowLength = options['pre-4s-inversion-detection-window'] || 10;
   longTermForecastWindowLength = options['pre-4s-forecast-window'] || (marketCycleLength + 1);
@@ -151,7 +157,7 @@ export async function main(ns) {
   while (true) {
     const playerStats = ns.getPlayer();
     const pre4s = !ns.stock.has4SDataTIXAPI();
-    corpus = await refresh(ns, playerStats, allStocks, myStocks);
+    corpus = await refresh(ns, playerStats, allStocks, myStocks, pre4s);
 
     if (pre4s && !mock && tryGet4SApi(ns, playerStats, bitnodeMults, corpus)) continue;
 
@@ -205,9 +211,7 @@ export async function main(ns) {
        * Sort stocks by how quickly they can recover the spread (time to profit),
        * then by highest expected return.
        */
-      const purchaseOrder = (a, b) =>
-        Math.ceil(a.timeToCoverTheSpread()) - Math.ceil(b.timeToCoverTheSpread()) ||
-        b.absReturn() - a.absReturn();
+      
 
       const sortedStocks = allStocks.sort(purchaseOrder);
 
@@ -280,9 +284,12 @@ function initAllStocks(ns) {
     maxShares: dictMaxShares[s],
     expectedReturn: function () {
       let normalizedProb = (this.prob - 0.5);
+
+      let stdDev = this.probStdDev ?? Math.sqrt((this.prob * (1 - this.prob)) / minTickHistory);
       let conservativeProb = normalizedProb < 0
-        ? Math.min(0, normalizedProb + this.probStdDev)
-        : Math.max(0, normalizedProb - this.probStdDev);
+        ? Math.min(0, normalizedProb + stdDev)
+        : Math.max(0, normalizedProb - stdDev);
+
       return this.vol * conservativeProb;
     },
     absReturn: function () {
@@ -330,7 +337,7 @@ const detectInversion = (p1, p2) =>
   ((p1 <= 0.5 - tol2) && (p2 >= 0.5 + tol2) && p2 >= (1 - p1) - inversionDetectionTolerance);
 
 // Chunk 5: Refresh Logic
-async function refresh(ns, playerStats, allStocks, myStocks) {
+async function refresh(ns, playerStats, allStocks, myStocks, pre4s) {
   const has4s = ns.stock.has4SDataTIXAPI();
   let corpus = playerStats.money;
 
@@ -369,7 +376,7 @@ async function refresh(ns, playerStats, allStocks, myStocks) {
 
     stk.vol = has4s ? dictVolatilities[sym] : stk.vol;
     stk.prob = has4s ? dictForecasts[sym] : stk.prob;
-    stk.probStdDev = has4s ? 0 : stk.probStdDev;
+    stk.probStdDev = has4s ? 0 : Math.sqrt((stk.prob * (1 - stk.prob)) / minTickHistory);
 
     const [priorLong, priorShort] = [stk.sharesLong, stk.sharesShort];
     stk.position = mock ? null : dictPositions[sym];
@@ -394,12 +401,12 @@ async function refresh(ns, playerStats, allStocks, myStocks) {
     }
   }
 
-  if (ticked) await updateForecast(ns, allStocks, has4s);
+  if (ticked) await updateForecast(ns, allStocks, has4s, pre4s);
   return corpus;
 }
 // Chunk 6: Forecast Update & Inversion Detection
 
-async function updateForecast(ns, allStocks, has4s) {
+async function updateForecast(ns, allStocks, has4s, pre4s) {
   const currentHistory = allStocks[0].priceHistory.length;
   const prepSummary = mock ||
     (!has4s && (currentHistory < minTickHistory ||
@@ -413,8 +420,12 @@ async function updateForecast(ns, allStocks, has4s) {
     stk.priceHistory.unshift(stk.price);
 
     if (!has4s) {
+      stk.prob = forecast(stk.priceHistory.slice(0, minTickHistory));
+
       stk.vol = stk.priceHistory.reduce((max, price, idx) =>
         Math.max(max, idx === 0 ? 0 : Math.abs(stk.priceHistory[idx - 1] - price) / price), 0);
+      if (pre4s) ns.print(`DEBUG: Running in pre-4S mode. Forecasts and volatility are estimated.`);
+
     }
 
     stk.nearTermForecast = forecast(stk.priceHistory.slice(0, nearTermForecastWindowLength));
@@ -500,6 +511,10 @@ async function updateForecast(ns, allStocks, has4s) {
 
   await modifyFile(ns, portNumber, { long: long, short: short });
 }
+
+
+
+
 
 //Chunk 7: Buy/Sell Logic & HUD Setup
 
@@ -673,3 +688,19 @@ function doStatusUpdate(ns, stocks, myStocks, hudElement = null) {
 
   if (hudElement) hudElement.innerText = format_compact_currency(liquidation_value);
 }
+
+function tryGet4SApi(ns, playerStats, bitnodeMults, corpus) {
+    const baseCost = 1e9 + 5e9; // 1B for 4S Market Data, 5B for 4S Market Data TIX API
+    const discount = bitnodeMults.FourSigmaMarketDataApiCost * bitnodeMults.FourSigmaMarketDataCost;
+    const adjustedCost = baseCost * discount;
+
+    if (corpus > adjustedCost) {
+        ns.print(`INFO: Buying 4S Market Data API for $${formatMoney(adjustedCost)}...`);
+        ns.stock.purchase4SMarketData();
+        ns.stock.purchase4SMarketDataTixApi();
+        return true;
+    }
+    return false;
+}
+
+

@@ -1,4 +1,5 @@
 import {getAllServers, getAccessibleServers} from '/utils.js';
+import {zeroHack} from '/tools/arrayRepo.js'
 const IGNORE = ["darkweb"]
 const SLEEP_MIN = 3
 /** @param {NS} ns */
@@ -13,7 +14,7 @@ function disable_logs(ns) {
 export async function main(ns) {
 	//disable_logs(ns)
 	while (true) {
-		let servers = getAccessibleServers(ns);
+		let servers = getAccessibleServers(ns).concat(zeroHack);
 		let serv_set = Array(servers)
 		serv_set.push("home")
 
@@ -38,7 +39,7 @@ export async function main(ns) {
 			i += 1
 		}
 
-		await ns.sleep(60000 * SLEEP_MIN)
+		await ns.sleep(6000 * SLEEP_MIN)
 	}
 
 }
