@@ -34,6 +34,32 @@ export function getAllServers(ns) {
     return Array.from(discovered);
 }
 
+/** @returns {Object[]} */
+export function getActionData() {
+    return [
+        // General
+        { name: 'Training', type: 'General', rewardFac: 0, rankGain: 0 },
+        { name: 'Field Analysis', type: 'General', rewardFac: 1, rankGain: 0.1, accuracy: 'eff' },
+        { name: 'Recruitment', type: 'General', rewardFac: 0, rankGain: 0 },
+        { name: 'Diplomacy', type: 'General', rewardFac: 0, rankGain: 0 },
+        { name: 'Hyperbolic Regeneration Chamber', type: 'General', rewardFac: 0, rankGain: 0 },
+        { name: 'Incite Violence', type: 'General', rewardFac: 0, rankGain: 0 },
+
+        // Contracts
+        { name: 'Tracking', type: 'Contract', rewardFac: 1.041, rankGain: 0.3 },
+        { name: 'Bounty Hunter', type: 'Contract', rewardFac: 1.085, rankGain: 0.9 },
+        { name: 'Retirement', type: 'Contract', rewardFac: 1.065, rankGain: 0.6 },
+
+        // Operations
+        { name: 'Investigation', type: 'Operation', rewardFac: 1.07, rankGain: 2.2, accuracy: 0.4 },
+        { name: 'Undercover Operation', type: 'Operation', rewardFac: 1.09, rankGain: 4.4, accuracy: 0.8 },
+        { name: 'Sting Operation', type: 'Operation', rewardFac: 1.095, rankGain: 5.5, late: true },
+        { name: 'Raid', type: 'Operation', rewardFac: 1.1, rankGain: 55, late: true },
+        { name: 'Stealth Retirement Operation', type: 'Operation', rewardFac: 1.11, rankGain: 22, late: true },
+        { name: 'Assassination', type: 'Operation', rewardFac: 1.14, rankGain: 44 }
+    ];
+}
+
 /**
  *
  * @returns {Object<string>}
@@ -774,8 +800,39 @@ export function hackServer(ns, server) {
  * @param {NS} ns
  * @returns {string[]}
  */
-export function getAccessibleServers(ns) {
-	return getServers(ns).filter(server => hackServer(ns, server) && !server.startsWith('hacknet-node-'));
+
+export function getAccessibleServers(ns, onlyFactionServers = false) {
+    const allServers = scanAll(ns);
+    const purchased = ns.getPurchasedServers();
+
+    return allServers.filter(s =>
+        ns.hasRootAccess(s) &&
+        !s.startsWith("hacknet-node-") &&
+        (!onlyFactionServers || (s !== "home" && !purchased.includes(s)))
+    );
+}
+
+
+/**
+ * Recursively scans all servers starting from "home"
+ * @param {NS} ns
+ * @returns {string[]} list of all discovered servers
+ */
+export function scanAll(ns) {
+    const discovered = new Set();
+    const stack = ["home"];
+
+    while (stack.length > 0) {
+        const current = stack.pop();
+        if (!discovered.has(current)) {
+            discovered.add(current);
+            for (const neighbor of ns.scan(current)) {
+                stack.push(neighbor);
+            }
+        }
+    }
+
+    return Array.from(discovered);
 }
 
 /**

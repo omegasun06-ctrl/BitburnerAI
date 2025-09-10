@@ -53,14 +53,14 @@ for (let hack in hacks_dict) {
 	// Running assumption that hacking level is high enough. This is checked in crawler.js
 	ns.print(server, " hacking level:", ns.getServerRequiredHackingLevel(server)," Player Hacking: ", ns.getHackingLevel())
 	let req_ports = ns.getServerNumPortsRequired(server)
-	if (req_ports !=0 && req_ports <= hackCount && !ns.hasRootAccess(server)) {
+	if (req_ports <= hackCount && !ns.hasRootAccess(server)) {
     run_hacks(ns, server, hacks_dict)
 	     ns.nuke(server)
        	if (ns.hasRootAccess(server)) {
 	    	ns.toast(server + " has been hacked")
 	  // ----Singularity Required----
-		//if (BACKDOOR_SERVS.includes(server))
-			//ns.exec("hacking/backdoor.js", "home", 1, server)
+		if (BACKDOOR_SERVS.includes(server))
+			ns.exec("/sing/tools/backdoor.js", "home", 1, server)
 	}
     }
   else if (ns.hasRootAccess(server)) {

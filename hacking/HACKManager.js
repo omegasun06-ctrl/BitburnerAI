@@ -1,3 +1,4 @@
+import { contractor } from "/contracts/contractor.js";
 /** @param {import(".").NS } ns */
 export async function main(ns) {
   const scriptDir = "/daemons/";
@@ -75,6 +76,7 @@ export async function main(ns) {
       const maxRam = ns.getServerMaxRam(server);
       const usedRam = ns.getServerUsedRam(server);
       let freeRam = maxRam - usedRam;
+      if (server === "home") freeRam = Math.max(0, freeRam - 4096);
 
       // Priming phase for active target (only)
       const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
@@ -249,6 +251,7 @@ for (const support of supportServers) {
 
     loopCount++;
     ns.print(`🔁 Sleeping for ${loopDelay / 1000} seconds...`);
+    contractor(ns);
     await ns.sleep(loopDelay);
   }
 }
