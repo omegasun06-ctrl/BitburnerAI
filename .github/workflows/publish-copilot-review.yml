@@ -36,16 +36,35 @@ jobs:
           }
 
           # List the files you want me to review here:
+          add_file daemons/hack.js
+          add_file daemons/weaken.js
+          add_file daemons/grow.js
+          add_file daemons/share.js
+          add_file contracts/contractor.js
           add_file blade/BLADEManager.js
+          add_file blade/BLADEPrep.js
           add_file crime/CRIMEManager.js
+          add_file factions/share.js
           add_file utils.js
           add_file hacking/prime_target.js
           add_file hacking/HACKManager_dev.js
           add_file hacking/worm.js
+          add_file hacking/batcher.js
           add_file hacknet/HNManager.js
+          add_file player/PSManager.js
+          add_file player/buy_pserv.js
           add_file stock-market/STOCKManager.js
           add_file sing/autostart.js
           add_file sing/job/JOBManager.js
+          add_file tools/connectTo.js
+          add_file tools/qq.js
+          add_file tools/intelligence-farm.js
+          add_file tools/DANGERclose.js
+          add_file tools/server-list.js
+          add_file ui/batch-model.js
+          add_file ui/batch-view.js
+          add_file ui/box-drawing.js
+          add_file ui/gangDashboard.js
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
