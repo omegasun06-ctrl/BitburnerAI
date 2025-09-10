@@ -134,7 +134,17 @@ export async function main(ns) {
       const maxRam = ns.getServerMaxRam(server);
       const usedRam = ns.getServerUsedRam(server);
       let freeRam = maxRam - usedRam;
-      if (server === "home") freeRam = Math.max(0, freeRam - 4096);
+      
+if (server === "home") {
+  freeRam = Math.max(0, freeRam - 4096);
+  // Skip launching if less than 4 GB would remain
+  const projectedFreeRam = ns.getServerMaxRam("home") - ns.getServerUsedRam("home");
+  if (projectedFreeRam < 4) {
+    ns.print(`🚫 Skipping thread launch on home: <4GB RAM buffer`);
+    continue;
+  }
+}
+
 
       const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
       const moneyMax = activeTarget.maxMoney;
@@ -208,7 +218,17 @@ export async function main(ns) {
       const maxRam = ns.getServerMaxRam(server);
       const usedRam = ns.getServerUsedRam(server);
       let freeRam = maxRam - usedRam;
-      if (server === "home") freeRam = Math.max(0, freeRam - 4096);
+      
+if (server === "home") {
+  freeRam = Math.max(0, freeRam - 4096);
+  // Skip launching if less than 4 GB would remain
+  const projectedFreeRam = ns.getServerMaxRam("home") - ns.getServerUsedRam("home");
+  if (projectedFreeRam < 4) {
+    ns.print(`🚫 Skipping thread launch on home: <4GB RAM buffer`);
+    continue;
+  }
+}
+
 
       const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
       const moneyMax = activeTarget.maxMoney;
@@ -280,6 +300,6 @@ export async function main(ns) {
     ns.print(`🔁 Sleeping for ${loopDelay / 1000} seconds...`);
     await ns.sleep(loopDelay);
     contractor(ns);
-    crawl(ns);
+    await crawl(ns);
   }
 }

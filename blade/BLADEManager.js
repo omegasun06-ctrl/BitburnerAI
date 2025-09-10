@@ -1,6 +1,43 @@
 import { getCities } from '/utils.js';
 import { getActionData } from '/utils.js'; // Make sure this is included at the top
 /** @param {NS} ns **/
+
+/** Conservative stamina penalty curve.
+ *  Up to 55%: scale down linearly to 0. At 100%: full strength.
+ *  Based on community guidance that penalties start to bite around ~50%. */
+function staminaPenaltyFactor(stamPct) {
+  const FLOOR = 0.55;               // start penalizing below this
+  if (stamPct >= 1) return 1;
+  if (stamPct >= FLOOR) return 0.85 + 0.15 * (stamPct - FLOOR) / (1 - FLOOR);
+  // Below FLOOR, drop to 0 at ~20% stamina
+  const MIN_FLOOR = 0.20;
+  if (stamPct <= MIN_FLOOR) return 0;
+  return 0.50 * (stamPct - MIN_FLOOR) / (FLOOR - MIN_FLOOR); // 0→0.5 linearly
+}
+
+/** Defensive HP gauge that supports both old/new player objects.
+ *  Returns {pct, cur, max, ok}, where ok=false if we can’t infer percentage. */
+function getHpStatus(ns) {
+  const p = ns.getPlayer(); // includes hp & mults per API
+  // Newer builds: p.hp may be {current,max}; some builds expose numeric hp
+  let cur, max;
+  if (p?.hp && typeof p.hp === 'object' && 'current' in p.hp && 'max' in p.hp) {
+    cur = Number(p.hp.current); max = Number(p.hp.max);
+  } else if (typeof p?.hp === 'number') {
+    // If only a number, we can treat it as current HP; no reliable max
+    cur = Number(p.hp); max = NaN;
+  }
+  const pct = (Number.isFinite(max) && max > 0) ? cur / max : NaN;
+  return { pct, cur, max, ok: Number.isFinite(pct) };
+}
+
+/** Compute a conservative effective success chance for an action. */
+function effectiveChance(ns, type, name, stamPct) {
+  const [minC, maxC] = ns.bladeburner.getActionEstimatedSuccessChance(type, name);
+  const base = Math.max(0, Math.min(1, (minC + maxC) / 2)); // mean
+  return base * staminaPenaltyFactor(stamPct);
+}
+
 export async function main(ns) {
   //ns.disableLog('ALL');
   const bb = ns.bladeburner;
@@ -9,6 +46,16 @@ export async function main(ns) {
   const blackOpThreshold = 0.95;
   const promptTimeout = 3000;
   let lastLookAround = 0;
+  // === Safety thresholds ===
+const HP_HOSP_PCT     = 0.12;   // auto-hospitalize below 12% if Singularity available
+const HP_WARN_PCT     = 0.25;   // below this, avoid high-risk ops
+const HP_ABS_FALLBACK = 20;     // if max HP unknown, don’t risk ops below 20 HP
+const STAM_LOW_PCT    = 0.55;   // below this, prefer safe actions (Field Analysis, Training)
+const MIN_CONTRACT    = 0.80;   // min effective chance for contracts
+const MIN_OPERATION   = 0.90;   // min effective chance for operations
+const MIN_BLACKOP     = 0.95;   // min effective chance for BlackOps
+const CHAOS_HIGH      = 10;     // above this, prioritize Diplomacy
+
 
   function getSkillsData() {
     return [
@@ -173,7 +220,7 @@ export async function main(ns) {
     for (const name of ops) {
       const [amin, amax] = bb.getActionEstimatedSuccessChance("BlackOp", name);
 
-      const remaining = bb.getActionCountRemaining("BlackOps", name);
+      const remaining = bb.getActionCountRemaining("BlackOp", name);
       if (remaining > 0 && amax >= blackOpThreshold) {
         await doAction("BlackOps", name);
       }
@@ -206,7 +253,14 @@ export async function main(ns) {
     await handleBlackOps();
 
     const bestAction = getBestAction(ns, bb, focus);
-    if (bestAction) {
+    
+const stamPct = bb.getStamina()[0] / bb.getStamina()[1];
+if (stamPct < STAM_LOW_PCT) {
+    ns.print("⚠️ Low stamina. Running Field Analysis.");
+    await doAction("General", "Field Analysis");
+    continue;
+}
+else if (bestAction) {
       await doAction(bestAction.type, bestAction.name);
     } else {
       ns.print("No suitable action found. Resting...");
