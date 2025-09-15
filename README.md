@@ -35,7 +35,7 @@ Welcome to the **BitburnerAI** repository! This repo is a personal coding playgr
 
 
 - Other useful scripts
-```````bash
+  
         - /tools/qq.js - queues a script to run once enough memory is available. "run qq.js <server> <scripts> <threads> <scripts arg1> ......"
         - /tools/connectTo.js - gives the connection command toa server. "run connectTo.js the-hub"
         - /tools/DANGERclose.js - deletes ALL files home. use with EXTREME CAUTION. helpful to clear scripts before a push from IDE. I mostly use it when doing significant script organization. 
