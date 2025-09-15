@@ -1,5 +1,6 @@
 /** @param {NS} ns **/
 import { contractor } from "/contracts/contractor.js";
+import { crawl } from "/old_scripts/hacking/crawler.js"
 
 export async function main(ns) {
   const scriptDir = "/daemons/";
@@ -37,7 +38,7 @@ export async function main(ns) {
     return Array.from(discovered);
   }
 
-  function getPrioritizedTargets(ns) {
+  async function getPrioritizedTargets(ns) {
     const servers = getAllServers(ns);
     const candidates = [];
     const playerLevel = ns.getHackingLevel();
@@ -67,26 +68,21 @@ export async function main(ns) {
     return heldLongEnough && significantlyBetter;
   }
 
-  let candidates = getPrioritizedTargets(ns);
+  let candidates = await getPrioritizedTargets(ns);
   let activeTarget = candidates.length ? candidates[0] : null;
   let activeSince = Date.now();
 
   while (true) {
+
+    // 1) Refresh candidates
     if (usePlanner && loopCount % refreshRate === 0 && ns.fileExists(plannerFile)) {
       try {
-        const data = ns.read(plannerFile);
-        const parsed = JSON.parse(data);
-        plannerTargets = parsed.map(p => {
-          if (!p.hostname || typeof p.moneyPerSec !== "number") throw new Error("Invalid planner entry");
-          return {
-            server: p.hostname,
-            maxMoney: 0,
-            minSecurity: 1,
-            hackChance: 1,
-            requiredLevel: 1,
-            score: p.moneyPerSec
-          };
-        });
+        const parsed = JSON.parse(ns.read(plannerFile));
+        plannerTargets = parsed.map(p => ({
+          server: p.hostname,
+          maxMoney: 0, minSecurity: 1, hackChance: 1, requiredLevel: 1,
+          score: p.moneyPerSec
+        }));
         candidates = plannerTargets;
         ns.print(`📊 Planner recommends: ${candidates[0].server} ($${candidates[0].score.toFixed(2)}/sec)`);
       } catch (err) {
@@ -96,11 +92,15 @@ export async function main(ns) {
     }
 
     if (!usePlanner && loopCount % refreshRate === 0) {
-      candidates = getPrioritizedTargets(ns);
+      // IMPORTANT: await if this helper is async
+      candidates = await getPrioritizedTargets(ns);
     }
 
+    // 2) Decide active target (avoid hidden ns.* inside helpers)
     const best = candidates[0];
-    if (!activeTarget || !ns.hasRootAccess(activeTarget.server) || shouldSwitchTarget(activeTarget, best)) {
+    const lostAccess = activeTarget ? !ns.hasRootAccess(activeTarget.server) : false;
+    const mustSwitch = activeTarget && best ? shouldSwitchTarget(activeTarget, best) : !activeTarget;
+    if (!activeTarget || lostAccess || mustSwitch) {
       activeTarget = best ?? null;
       activeSince = Date.now();
       if (activeTarget) {
@@ -112,6 +112,7 @@ export async function main(ns) {
       }
     }
 
+    // 3) Handle no-target case
     if (!activeTarget) {
       ns.print("⏳ Waiting for a viable active target...");
       await ns.sleep(loopDelay);
@@ -119,8 +120,10 @@ export async function main(ns) {
       continue;
     }
 
+    // 4) Build server lists (ensure getAllServers is sync)
     const playerServers = ["home", ...ns.getPurchasedServers()];
-    const supportServers = getAllServers(ns).filter(s =>
+    const allServers = getAllServers(ns);          // must be sync
+    const supportServers = allServers.filter(s =>
       !playerServers.includes(s) &&
       ns.hasRootAccess(s) &&
       ns.getServerMaxRam(s) > 0
@@ -149,7 +152,7 @@ export async function main(ns) {
         }
         continue;
       }
-      
+
       const ramHack = ns.getScriptRam(scriptDir + "hack.js");
       const ramGrow = ns.getScriptRam(scriptDir + "grow.js");
       const ramWeaken = ns.getScriptRam(scriptDir + "weaken.js");
@@ -196,8 +199,8 @@ export async function main(ns) {
         } else {
           break;
         }
-      
-    }
+
+      }
     }
 
     for (const server of supportServers) {
@@ -223,7 +226,7 @@ export async function main(ns) {
         }
         continue;
       }
-    
+
       const ramHack = ns.getScriptRam(scriptDir + "hack.js");
       const ramGrow = ns.getScriptRam(scriptDir + "grow.js");
       const ramWeaken = ns.getScriptRam(scriptDir + "weaken.js");
@@ -270,12 +273,13 @@ export async function main(ns) {
         } else {
           break;
         }
-      
+
+      }
     }
-    }
-    contractor(ns);
     loopCount++;
     ns.print(`🔁 Sleeping for ${loopDelay / 1000} seconds...`);
     await ns.sleep(loopDelay);
+    contractor(ns);
+    await crawl(ns);
   }
 }

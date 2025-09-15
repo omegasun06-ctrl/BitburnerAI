@@ -1,0 +1,82 @@
+name: Publish Copilot Review Page - test
+on:
+  push:
+    branches: [Dev, main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build review page
+        run: |
+          set -euo pipefail
+          mkdir -p public
+          {
+            echo "<!doctype html><meta charset='utf-8'/>"
+            echo "<title>BitburnerAI – Copilot Review Snapshot</title>"
+            echo "<h1>BitburnerAI – Copilot Review Snapshot</h1>"
+            echo "<p>Commit: ${GITHUB_SHA}</p>"
+          } > public/index.html
+
+          add_file () {
+            local f="$1"
+            if [ -f "$f" ]; then
+              echo "<h2>${f}</h2><pre><code>" >> public/index.html
+              # Escape HTML so code renders safely
+              sed -e 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g' "$f" >> public/index.html
+              echo "</code></pre>" >> public/index.html
+            fi
+          }
+
+          # List the files you want me to review here:
+          add_file daemons/hack.js
+          add_file daemons/weaken.js
+          add_file daemons/grow.js
+          add_file daemons/share.js
+          add_file contracts/contractor.js
+          add_file blade/BLADEManager.js
+          add_file blade/BLADEPrep.js
+          add_file crime/CRIMEManager.js
+          add_file factions/share.js
+          add_file utils.js
+          add_file hacking/prime_target.js
+          add_file hacking/HACKManager_dev.js
+          add_file hacking/worm.js
+          add_file hacking/batcher.js
+          add_file hacknet/HNManager.js
+          add_file player/PSManager.js
+          add_file player/buy_pserv.js
+          add_file stock-market/STOCKManager.js
+          add_file sing/autostart.js
+          add_file sing/job/JOBManager.js
+          add_file tools/connectTo.js
+          add_file tools/qq.js
+          add_file tools/intelligence-farm.js
+          add_file tools/DANGERclose.js
+          add_file tools/server-list.js
+          add_file ui/batch-model.js
+          add_file ui/batch-view.js
+          add_file ui/box-drawing.js
+          add_file ui/gangDashboard.js
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

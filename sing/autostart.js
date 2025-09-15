@@ -5,11 +5,11 @@ export async function main(ns) {
   //0. kill all current running scripts on home.
   ns.killall();
    // 1. Run the crawler script
-  ns.run("/old_scripts/hacking/crawler.js");
+  //ns.run("/old_scripts/hacking/crawler.js");
   // 1. If hacking level low, connect to foodnstuff and nuke it
   if (ns.getHackingLevel() <= 20) {
     {
-      ns.run("/daemon/hack.js", 100, "foodnstuff")
+      ns.run("/daemon/hack.js", 10, "foodnstuff")
     }
   }
 
@@ -19,22 +19,21 @@ export async function main(ns) {
   }
   // 3. Buy available hacking programs if affordable
   const programs = [
-    "BruteSSH.exe",
-    "FTPCrack.exe",
-    "relaySMTP.exe",
-    "HTTPWorm.exe",
-    "SQLInject.exe",
-    "DeepScanV2.exe",
-    "AutoLink.exe",
-    "Formulas.exe"
+    {name: "BruteSSH.exe", price: 500000},
+    {name: "FTPCrack.exe", price: 1500000},
+    {name: "relaySMTP.exe", price: 5000000},
+    {name: "HTTPWorm.exe", price: 25000000},
+    {name: "SQLInject.exe", price: 250000000},
+    {name: "DeepScanV2.exe", price: 25000000},
+    {name: "AutoLink.exe", price: 1000000},
+    {name: "Formulas.exe", price: 5000000000}
   ];
   for (const prog of programs) {
-    if (!ns.fileExists(prog, "home") && ns.getPlayer().money >= 500000) {
-      ns.singularity.purchaseProgram(prog);
+    if (!ns.fileExists(prog.name, "home") && ns.getPlayer().money >= prog.price) {
+      ns.singularity.purchaseProgram(prog.name);
     }
   }
   
-
   // 5. If karma > -54000 then run crime manager
   if (ns.heart.break() > -54000) {
     ns.run("/sing/crime/CRIMEManager.js");
@@ -46,7 +45,7 @@ export async function main(ns) {
   }
   // 6. Run the job manager if hacking is hjigh enoug
   if (ns.getHackingLevel() >= 225 && ns.gang.inGang()) {
-    ns.run('/sing/jobs/JOBManager.js', 1, 'NWO', 'IT');
+    //ns.run('/sing/jobs/JOBManager.js', 1, 'NWO', 'IT');
   }
   // 7. Run the bladeManager
   if (ns.bladeburner.inBladeburner()) {
@@ -54,7 +53,7 @@ export async function main(ns) {
   }
   // 8. If stock APIs are unlocked start stock manager
   if (ns.stock.hasWSEAccount() && ns.stock.hasTIXAPIAccess()) {
-    ns.run("/stock-market/STOCKManager.js");
+    //ns.run("/stock-market/STOCKManager.js");
   }
 
   // 9. Buy the maximum HOME RAM it can
@@ -78,9 +77,9 @@ export async function main(ns) {
   
   // 13. Run hack manager
   if (ns.fileExists("Formulas.exe", "home")) {
-    ns.run("/hacking/HACKManager_dev.js", 1, "--usePlanner");
+    ns.run("/hacking/HACKManager.js", 1, "--usePlanner");
   }
   else {
-    ns.run("/hacking/HACKManager_dev.js");
+    ns.run("/hacking/HACKManager.js");
   }
 }

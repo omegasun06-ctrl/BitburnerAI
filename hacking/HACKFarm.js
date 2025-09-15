@@ -1,82 +1,89 @@
 /** @param {NS} ns **/
+import {getAllServers} from "/utils.js"
 export async function main(ns) {
-    ns.disableLog("sleep");
-    const scriptNames = {
-        hack: "/daemons/hack.js",
-        grow: "/daemons/grow.js",
-        weaken: "/daemons/weaken.js"
-    };
+  const weakenScript = "/daemons/weaken.js";
+  const batchId = "BatchID: Hacking Farm";
+  const refreshInterval = 5000;
 
-    const servers = getAllServers(ns).filter(s => ns.hasRootAccess(s));
-    const homeRam = ns.getServerMaxRam("home") - ns.getServerUsedRam("home");
+  let lastXp = ns.getPlayer().exp.hacking;
+  let lastTime = Date.now();
 
-    const actionStats = [];
+  while (true) {
+    const allServers = getAllServers(ns);
+    const purchased = ns.getPurchasedServers();
 
-    for (const server of servers) {
-        if (!ns.hasRootAccess(server) || ns.getServerRequiredHackingLevel(server) > ns.getHackingLevel()) continue;
+    const targets = allServers.filter(s =>
+      s !== "home" &&
+      !purchased.includes(s) &&
+      ns.hasRootAccess(s) &&
+      ns.getServerRequiredHackingLevel(s) <= ns.getHackingLevel()
+    );
 
-        const hackXp = ns.getHackExpGain(server);
-        const growXp = ns.getGrowExpGain(server);
-        const weakenXp = ns.getWeakenExpGain(server);
 
-        actionStats.push({
-            server,
-            action: "hack",
-            xp: hackXp,
-            time: ns.getHackTime(server)
-        });
-        actionStats.push({
-            server,
-            action: "grow",
-            xp: growXp,
-            time: ns.getGrowTime(server)
-        });
-        actionStats.push({
-            server,
-            action: "weaken",
-            xp: weakenXp,
-            time: ns.getWeakenTime(server)
-        });
+    const bestTarget = targets.sort((a, b) =>
+      ns.getServerSecurityLevel(a) - ns.getServerSecurityLevel(b)
+    )[0];
+
+    if (!bestTarget) {
+      ns.print("No valid targets found.");
+      await ns.sleep(refreshInterval);
+      continue;
     }
 
-    // Sort by XP per second
-    actionStats.sort((a, b) => (b.xp / b.time) - (a.xp / a.time));
+    const weakenTime = ns.getWeakenTime(bestTarget);
+    const delayRaw = Math.floor(weakenTime * 0.9); // Slight offset to avoid overlap
 
-    for (const host of servers) {
-        const maxRam = ns.getServerMaxRam(host);
-        const usedRam = ns.getServerUsedRam(host);
-        const freeRam = maxRam - usedRam;
+    const launchers = allServers.filter(s =>
+    ns.hasRootAccess(s) 
+);
 
-        if (freeRam < 1.75) continue;
+for (const host of launchers) {
+    const maxRam = ns.getServerMaxRam(host);
+    const usedRam = ns.getServerUsedRam(host);
+    const freeRam = maxRam - usedRam;
 
-        const best = actionStats.find(stat => ns.hasRootAccess(stat.server));
-        if (!best) continue;
+    const ramPerThread = ns.getScriptRam(weakenScript) || 1.75;
+    const threads = Math.floor(freeRam / ramPerThread);
 
-        const script = scriptNames[best.action];
-        const ramPerThread = ns.getScriptRam(script);
-        const threads = Math.floor(freeRam / ramPerThread);
-
-        if (threads > 0) {
-            ns.exec(script, host, threads, best.server);
-            ns.tprint(`Running ${best.action} on ${best.server} from ${host} with ${threads} threads`);
-        }
+    if (threads > 0) {
+      if(!ns.fileExists("/daemons/weaken.js", host)){
+        ns.scp("/daemons/weaken.js", host)
+      }
+        ns.exec(weakenScript, host, threads, bestTarget, delayRaw, batchId);
+        ns.print(`Weaken launched on ${bestTarget} from ${host} with ${threads} threads`);
     }
 }
 
-function getAllServers(ns) {
-    const discovered = new Set();
-    const stack = ["home"];
 
-    while (stack.length > 0) {
-        const current = stack.pop();
-        discovered.add(current);
-        for (const neighbor of ns.scan(current)) {
-            if (!discovered.has(neighbor)) {
-                stack.push(neighbor);
-            }
-        }
-    }
+    // XP tracking
+    const currentXp = ns.getPlayer().exp.hacking;
+    const currentTime = Date.now();
+    const xpGain = currentXp - lastXp;
+    const timeElapsed = (currentTime - lastTime) / 1000;
+    const xpPerSec = (xpGain / timeElapsed).toFixed(2);
 
-    return [...discovered];
+    ns.print(`XP Gain: ${xpGain} | Time: ${timeElapsed}s | XP/sec: ${xpPerSec}`);
+
+    lastXp = currentXp;
+    lastTime = currentTime;
+
+    await ns.sleep(refreshInterval);
+  }
 }
-  
+
+// function getAllServers(ns) {
+//   const discovered = new Set();
+//   const stack = ["home"];
+
+//   while (stack.length > 0) {
+//     const current = stack.pop();
+//     discovered.add(current);
+//     for (const neighbor of ns.scan(current)) {
+//       if (!discovered.has(neighbor)) {
+//         stack.push(neighbor);
+//       }
+//     }
+//   }
+
+//   return [...discovered];
+// }

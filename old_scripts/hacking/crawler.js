@@ -10,35 +10,52 @@ function disable_logs(ns) {
 	}
 }
 
+export async function crawl(ns) {
+  const servers = getAccessibleServers(ns).concat(zeroHack);
+  const serv_set = new Set(servers);
+  serv_set.add("home");
+
+  // Determine how many ports we can open
+  const portPrograms = [
+    "BruteSSH.exe",
+    "FTPCrack.exe",
+    "relaySMTP.exe",
+    "HTTPWorm.exe",
+    "SQLInject.exe"
+  ];
+  const availablePortCount = portPrograms.filter(p => ns.fileExists(p, "home")).length;
+
+  let i = 0;
+  while (i < servers.length) {
+    const server = servers[i];
+
+    const requiredPorts = ns.getServerNumPortsRequired(server);
+    const isIgnored = IGNORE.includes(server);
+    const isRooted = ns.hasRootAccess(server);
+
+    if (!isRooted && !isIgnored && requiredPorts <= availablePortCount) {
+      ns.print("attempting to hack ", server);
+      ns.run("/hacking/worm.js", 1, server);
+      await ns.sleep(100);
+    }
+
+    const neighbors = ns.scan(server);
+    for (const neighbor of neighbors) {
+      if (!serv_set.has(neighbor)) {
+        serv_set.add(neighbor);
+        servers.push(neighbor);
+      }
+    }
+
+    i += 1;
+  }
+}
+
 /** @param {NS} ns */
 export async function main(ns) {
 	//disable_logs(ns)
 	while (true) {
-		let servers = getAccessibleServers(ns).concat(zeroHack);
-		let serv_set = Array(servers)
-		serv_set.push("home")
-
-		let i = 0
-		while (i < servers.length) {
-			let server = servers[i]
-      //&& ns.getServerRequiredHackingLevel(server) <= ns.getHackingLevel()vvvv
-			if (!ns.hasRootAccess(server)  && !IGNORE.includes(server)) {
-				ns.print("attempting to hack ", server)
-				ns.run("/hacking/worm.js", 1, server)
-				await ns.sleep(1000)
-			}
-			let s = ns.scan(server)
-			for (let j in s) {
-				let con = s[j]
-				if (!serv_set.includes(con)) {
-				//if (serv_set.indexOf(con) < 0) {
-					serv_set.push(con)
-					servers.push(con)
-				}
-			}
-			i += 1
-		}
-
+		await crawl(ns)
 		await ns.sleep(6000 * SLEEP_MIN)
 	}
 

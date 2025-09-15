@@ -3,7 +3,7 @@ export async function main(ns) {
   //ns.disableLog("ALL");
 
 
-  let maxPayoffTime = 1200;
+  let maxPayoffTime = 3600;
   if (ns.getPlayer().money > 1e9) maxPayoffTime = 1800; // 30 min if rich
   else if (ns.getPlayer().money < 1e6) maxPayoffTime = 300; // 5 min if poor
 

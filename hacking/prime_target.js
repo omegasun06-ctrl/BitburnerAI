@@ -1,18 +1,6 @@
-function getAllServers(ns) {
-    const discovered = new Set(["home"]);
-    const queue = ["home"];
-    while (queue.length > 0) {
-        const current = queue.shift();
-        const neighbors = ns.scan(current);
-        for (const neighbor of neighbors) {
-            if (!discovered.has(neighbor)) {
-                discovered.add(neighbor);
-                queue.push(neighbor);
-            }
-        }
-    }
-    return Array.from(discovered);
-}
+
+import { getAllServers, getFreeRam } from "/utils.js";
+
 
 /** @param {NS} ns **/
 export async function main(ns) {
@@ -45,35 +33,43 @@ export async function main(ns) {
   ns.print(`Weaken Threads Needed: ${weakenThreads}`);
   ns.print(`Grow Threads Needed: ${growThreads}`);
 
-const playerServers = ["home", ...ns.getPurchasedServers()];
-const supportServers = getAllServers(ns).filter(s =>
-      !playerServers.includes(s) &&
-      ns.hasRootAccess(s) &&
-      ns.getServerMaxRam(s) > 0
-    );
+  const playerServers = ["home", ...ns.getPurchasedServers()];
+  const supportServers = getAllServers(ns).filter(s =>
+    !playerServers.includes(s) &&
+    ns.hasRootAccess(s) &&
+    ns.getServerMaxRam(s) > 0
+  );
   const servers = playerServers.concat(supportServers);
   let weakenLeft = weakenThreads;
   let growLeft = growThreads;
 
   for (const server of servers) {
-    const freeRam = ns.getServerMaxRam(server) - ns.getServerUsedRam(server);
-    if (freeRam < Math.min(weakenRam, growRam)) continue;
+    let freeRam = getFreeRam(ns, server)
+    let weakenPossible = Math.floor((freeRam) / weakenRam);
 
-    let weakenPossible = Math.floor(freeRam / weakenRam);
     let weakenToRun = Math.min(weakenLeft, weakenPossible);
     let ramAfterWeaken = freeRam - (weakenToRun * weakenRam);
 
+    if (freeRam < Math.min(weakenRam, growRam)) continue;
+
+    if (server === "home") {
+      weakenToRun = Math.min(weakenLeft, weakenPossible) - 2; //run less to leave a buffer
+      ramAfterWeaken = freeRam - (weakenToRun + 2 * weakenRam);
+    }
+
     let growPossible = Math.floor(ramAfterWeaken / growRam);
     let growToRun = Math.min(growLeft, growPossible);
-    ns.scp(weakenScript, server);
-    ns.scp(growScript, server);
+
+    if (!ns.fileExists(weakenScript, server)) await ns.scp(weakenScript, server);
+    if (!ns.fileExists(growScript, server)) await ns.scp(growScript, server);
+
     if (weakenToRun > 0) {
-      ns.exec(weakenScript, server, weakenToRun, target, "batch-prime: "+ns.getHostname());
+      ns.exec(weakenScript, server, weakenToRun, target, "batch-prime: " + server + "2"+ target);
       weakenLeft -= weakenToRun;
     }
 
     if (growToRun > 0) {
-      ns.exec(growScript, server, growToRun, target, "batch-prime: "+ns.getHostname());
+      ns.exec(growScript, server, growToRun, target, "batch-prime: " + server + "2"+ target);
       growLeft -= growToRun;
     }
 
