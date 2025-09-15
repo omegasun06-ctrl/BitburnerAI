@@ -25,7 +25,7 @@ Welcome to the **BitburnerAI** repository! This repo is a personal coding playgr
 
 - pre singularity run MASTER.js to start script managers. Post singularity run /sing/autostart.js
 
-        - HACKManager.js - primes the best available target and then launches grow, weaken, and hack batches on the target onced primed from home and player servers. non player servers act as support servers and grow/weaken to help offset hacks. Also handles launching worm on servers to root as they become accessible and copies all needed scripts.
+        - HACKManager.js - primes the best available target and then launches grow, weaken, and hack batches on the target onced primed from home and player servers. Also handles launching worm on servers to root as they become accessible, completes contracts, and copies all needed scripts.
         - STOCKManager.js - automates stocks for both pre and post formula use. post formula is much more accurate. requires WSE APIs to work.
         - PSManager.js - automates player server purchases and upgrades. upgrades player servers as money is available
         - HNManager.js - automates the purchase and upgrade of the HackNet based on time to repay the upgrade. works best with formulas.exe unlocked but aproximates prior.
@@ -33,6 +33,7 @@ Welcome to the **BitburnerAI** repository! This repo is a personal coding playgr
         - SLEEVEManager.js - allows for automatic task assignment of sleeves. **current WIP very bare bones
         - GANGManager.js - automates all gang activities.
         - JOBManager.js - automates work for an assigned job. with a focus on rep or money.
+        - CRIMEManager.js - trains combat stats toa min. then focuses on lowering Karma to start a gang. also has --money flag to focus on cash gain versus kerma
 
 - Other useful scripts
   
