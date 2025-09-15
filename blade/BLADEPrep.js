@@ -56,7 +56,7 @@ export async function main(ns) {
         ns.singularity.joinFaction("Bladeburners");
         ns.tprint("Joined Bladeburners!");
 
-        const pid = ns.run("/blade/BLADEManager.js", 1);
+        const pid = ns.run("/tools/qq.js", "home", "/blade/BLADEManager.js", 1);
         if (pid === 0) {
           ns.tprint("❌ Failed to start Manager. Check RAM or script path.");
         } else {

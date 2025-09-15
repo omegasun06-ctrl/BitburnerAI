@@ -13,9 +13,10 @@ import {HackPlanner} from "/hacking/planner";
 
 */
 
+import { range, sleep, totalThreadsAvailable, maxThreadsAvailable } from "/utils";
+import { ServerModel, ServerList } from "/tools/server-list.js" //need to fix utils to get rid of these still
 import { drawTable } from "/ui/box-drawing";
 import { Batch } from "/ui/batch-model";
-import { ServerList, ServerModel } from "/tools/server-list";
 
 const FLAGS = [
   ["console", false],
@@ -41,17 +42,19 @@ export async function main(ns) {
   ns.clearLog();
   ns.tail();
 
+
   if (!flags.maxTotalRam) {
-    const backend = servers;
     const scriptRam = 1.75;
-    flags.maxTotalRam ||= (backend.totalThreadsAvailable(scriptRam) * scriptRam * 0.9);
+    flags.maxTotalRam = (totalThreadsAvailable(ns, scriptRam) * scriptRam * 0.9);
   }
 
+
+
   if (!flags.maxThreadsPerJob) {
-    const backend = servers;
     const scriptRam = 1.75;
-    flags.maxThreadsPerJob ||= Math.floor(backend.maxThreadsAvailable(scriptRam) / 4);
+    flags.maxThreadsPerJob = Math.floor(maxThreadsAvailable(ns, scriptRam) / 4);
   }
+
 
   ns.print(servers.reportMostProfitableServers(flags));
 
@@ -89,7 +92,14 @@ export class HackPlanner extends ServerList {
       servers = hostnames.map((hostname) => this.loadServer(hostname));
     }
     else {
-      servers = this.getHackableServers(ns.getPlayer());
+
+      servers = this.getHackableServers(ns.getPlayer()).filter(s => {
+        const processes = ns.ps(s.hostname);
+        return !processes.some(p =>
+          ["batcher.js", "prime_target.js", "weaken.js", "grow.js", "hack.js"].includes(p.filename)
+        );
+      });
+
     }
     const plans = [];
     for (const server of servers) {
@@ -407,6 +417,11 @@ export class HackableServer extends ServerModel {
     return batch;
   }
 
+
+  getStockInfo() {
+    return this.stockInfo ?? null;
+  }
+
   /** 
    * Construct a Batch of jobs that will hack a server and then return it to a ready state.
    * The batch will be of the form: H (GH)* (WG)* W
@@ -653,20 +668,3 @@ export class HackableServer extends ServerModel {
  * @property {number} moneyPerSecPerGB
  * @property {number} maxThreadsPerJob
  */
-
-/* ----- library functions ----- */
-
-function* range(start, stop, step) {
-  if (step <= 0 || stop < start) {
-    return;
-  }
-  let i = start;
-  while (i < stop) {
-    yield i;
-    i += step;
-  }
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}

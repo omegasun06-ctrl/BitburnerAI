@@ -1,42 +1,39 @@
 /** @param {NS} ns **/
 import { contractor } from "/contracts/contractor.js";
 import { crawl } from "/old_scripts/hacking/crawler.js"
+import { HackPlanner } from "/hacking/planner.js";
+import { getAllServers } from "/utils"
 
 export async function main(ns) {
+  ns.disableLog("getServerMaxRam")
+  ns.disableLog("getServerUsedRam")
+  ns.disableLog("getServerMoneyAvailable");
+  ns.disableLog("getServerMaxMoney");
+  ns.disableLog("getServerMinSecurityLevel");
+  ns.disableLog("getServerNumPortsRequired");
+  ns.disableLog("getServerRequiredHackingLevel");
+  ns.disableLog("scan");
+  ns.disableLog("sleep");
+  ns.disableLog("exec");
+
   const scriptDir = "/daemons/";
   const scripts = ["hack.js", "grow.js", "weaken.js"];
   const batcherScript = "/hacking/batcher.js";
   const primeScript = "/hacking/prime_target.js";
   const plannerFile = "/logs/batchPlans.txt";
-  const logfile = "/logs/HACKManager.txt";
-
-  const loopDelay = 30000;
+  //const logfile = "/logs/HACKManager.txt";
+  
+  const loopDelay = 10000;
   const batchSpacing = 10;
   const refreshRate = 5;
   const hysteresis = 0.20;
   const minHoldMs = 2 * 60 * 1000;
 
-  ns.rm(logfile, "home");
+  //ns.rm(logfile, "home");
 
   let loopCount = 0;
   let plannerTargets = [];
   const usePlanner = ns.args.includes("--usePlanner");
-
-  function getAllServers(ns) {
-    const discovered = new Set(["home"]);
-    const queue = ["home"];
-    while (queue.length > 0) {
-      const current = queue.shift();
-      const neighbors = ns.scan(current);
-      for (const neighbor of neighbors) {
-        if (!discovered.has(neighbor)) {
-          discovered.add(neighbor);
-          queue.push(neighbor);
-        }
-      }
-    }
-    return Array.from(discovered);
-  }
 
   async function getPrioritizedTargets(ns) {
     const servers = getAllServers(ns);
@@ -71,7 +68,7 @@ export async function main(ns) {
   let candidates = await getPrioritizedTargets(ns);
   let activeTarget = candidates.length ? candidates[0] : null;
   let activeSince = Date.now();
-
+  await crawl(ns);
   while (true) {
 
     // 1) Refresh candidates
@@ -106,7 +103,7 @@ export async function main(ns) {
       if (activeTarget) {
         const msg = `🎯 Active target set to ${activeTarget.server} (score=${activeTarget.score.toFixed(2)})`;
         ns.print(msg);
-        await ns.write(logfile, `${new Date().toISOString()} ${msg}\n`, "a");
+       // await ns.write(logfile, `${new Date().toISOString()} ${msg}\n`, "a");
       } else {
         ns.print("⚠️ No viable active target found.");
       }
@@ -130,33 +127,22 @@ export async function main(ns) {
     );
 
     for (const server of playerServers) {
-      await ns.scp([primeScript, batcherScript, "utils.js", ...scripts.map(s => scriptDir + s)], server);
+      if(!ns.fileExists(primeScript, server)){ await ns.scp([primeScript, batcherScript, "utils.js", ...scripts.map(s => scriptDir + s)], server)};
       const maxRam = ns.getServerMaxRam(server);
       const usedRam = ns.getServerUsedRam(server);
       let freeRam = maxRam - usedRam;
-      
-if (server === "home") {
-  freeRam = Math.max(0, freeRam - 4096);
-  // Skip launching if less than 4 GB would remain
-  const projectedFreeRam = ns.getServerMaxRam("home") - ns.getServerUsedRam("home");
-  if (projectedFreeRam < 4) {
-    ns.print(`🚫 Skipping thread launch on home: <4GB RAM buffer`);
-    continue;
-  }
-}
-
 
       const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
       const moneyMax = activeTarget.maxMoney;
       if (moneyAvailable < moneyMax * 0.95) {
         const isPriming = ns.ps(server).some(p => p.filename === primeScript && p.args.includes(activeTarget.server));
         const ramNeeded = ns.getScriptRam(primeScript);
-        if (!isPriming && freeRam >= ramNeeded) {
-          const pid = ns.exec(primeScript, server, 1, activeTarget.server);
+        if (!isPriming && freeRam >= ramNeeded  && server === "home") {
+          const pid = ns.exec(primeScript, "home" , 1, activeTarget.server);
           if (pid !== 0) {
             const message = `🧪 Priming ${activeTarget.server} on ${server}`;
             ns.print(message);
-            await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
+           // await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
             freeRam -= ramNeeded;
           }
         }
@@ -184,7 +170,7 @@ if (server === "home") {
         const scaleFactor = Math.floor(freeRam / unitRam);
         if (scaleFactor < 1) break;
 
-        const batchId = `batch-${Date.now()}-${server}-${activeTarget.server}`;
+        const batchId = `batch-${Date.now()}`;
         const pid = ns.exec(
           batcherScript,
           server,
@@ -203,7 +189,7 @@ if (server === "home") {
         if (pid !== 0) {
           const message = `✅ Batch on ${server} -> ${activeTarget.server} with ${scaleFactor}x threads`;
           ns.print(message);
-          await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
+          //await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
           freeRam -= unitRam * scaleFactor;
           await ns.sleep(batchSpacing);
         } else {
@@ -214,21 +200,10 @@ if (server === "home") {
     }
 
     for (const server of supportServers) {
-      await ns.scp([primeScript, batcherScript, "utils.js", ...scripts.map(s => scriptDir + s)], server);
+      if(!ns.fileExists(primeScript, server)){await ns.scp([primeScript, batcherScript, "utils.js", ...scripts.map(s => scriptDir + s)], server)};
       const maxRam = ns.getServerMaxRam(server);
       const usedRam = ns.getServerUsedRam(server);
       let freeRam = maxRam - usedRam;
-      
-if (server === "home") {
-  freeRam = Math.max(0, freeRam - 4096);
-  // Skip launching if less than 4 GB would remain
-  const projectedFreeRam = ns.getServerMaxRam("home") - ns.getServerUsedRam("home");
-  if (projectedFreeRam < 4) {
-    ns.print(`🚫 Skipping thread launch on home: <4GB RAM buffer`);
-    continue;
-  }
-}
-
 
       const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
       const moneyMax = activeTarget.maxMoney;
@@ -240,7 +215,7 @@ if (server === "home") {
           if (pid !== 0) {
             const message = `🧪 Priming ${activeTarget.server} on ${server}`;
             ns.print(message);
-            await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
+            //await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
             freeRam -= ramNeeded;
           }
         }
@@ -268,7 +243,7 @@ if (server === "home") {
         const scaleFactor = Math.floor(freeRam / unitRam);
         if (scaleFactor < 1) break;
 
-        const batchId = `batch-${Date.now()}-${server}-${activeTarget.server}`;
+        const batchId = `batch-${Date.now()}`;
         const pid = ns.exec(
           batcherScript,
           server,
@@ -287,7 +262,7 @@ if (server === "home") {
         if (pid !== 0) {
           const message = `✅ Batch on ${server} -> ${activeTarget.server} with ${scaleFactor}x threads`;
           ns.print(message);
-          await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
+          //await ns.write(logfile, `${new Date().toISOString()} ${message}\n`, "a");
           freeRam -= unitRam * scaleFactor;
           await ns.sleep(batchSpacing);
         } else {
@@ -301,5 +276,31 @@ if (server === "home") {
     await ns.sleep(loopDelay);
     contractor(ns);
     await crawl(ns);
+    await updatePlannerFile(ns);
   }
+}
+
+
+async function updatePlannerFile(ns) {
+  const planner = new HackPlanner(ns);
+  const flags = {
+    maxTotalRam: 16384,
+    maxThreadsPerJob: 512,
+    secMargin: 0.5,
+    reserveRam: true,
+    tDelta: 100
+  };
+
+  const bestPlans = planner.mostProfitableServers(flags);
+  const exportData = bestPlans.map(plan => ({
+    hostname: plan.server.hostname,
+    batch: plan.batch,
+    delays: plan.batch.getDelays?.(),
+    moneyPerSec: plan.moneyPerSec,
+    peakRam: plan.peakRam,
+    numBatches: plan.numBatchesAtOnce,
+    condition: plan.condition
+  }));
+
+  await ns.write("/logs/batchPlans.txt", JSON.stringify(exportData, null, 2), "w");
 }

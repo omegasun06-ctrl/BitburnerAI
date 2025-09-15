@@ -5,7 +5,14 @@ function purchaseOrder(a, b) {
 
 
 function format_compact_currency(value) {
-  if (value >= 1e9) {
+    
+    if (value >= 1e15) {
+    return `$${(value / 1e15).toFixed(3)}q`;
+   }
+   else if (value >= 1e12) {
+    return `$${(value / 1e12).toFixed(3)}t`;
+   }
+    else if (value >= 1e9) {
     return `$${(value / 1e9).toFixed(3)}b`;
   } else if (value >= 1e6) {
     return `$${(value / 1e6).toFixed(3)}m`;
@@ -22,8 +29,6 @@ import {
   formatMoney,
   formatPercentage,
   formatTime,
-  getPortNumbers,
-  modifyFile,
   printBoth,
   symbolToServer
 } from '/utils.js';
@@ -54,7 +59,7 @@ const catchUpTickTime = 4000;
 let lastTick = 0;
 let sleepInterval = 1000;
 
-const portNumber = getPortNumbers().stock;
+//const portNumber = getPortNumbers().stock;
 let stockSymbols;
 
 // Argument schema
@@ -509,7 +514,7 @@ async function updateForecast(ns, allStocks, has4s, pre4s) {
     }
   });
 
-  await modifyFile(ns, portNumber, { long: long, short: short });
+  //await modifyFile(ns, portNumber, { long: long, short: short });
 }
 
 
