@@ -52,6 +52,15 @@ export async function main(ns) {
 
         if (karma <= -54000 && combatReady) {
             ns.tprint("🚨 Gang unlock conditions met! You can now create a gang.");
+             const pid = ns.run("/tools/qq.js", "home", "/gang/GANGManager.js", 1);
+              const pid1 = ns.run("/tools/qq.js", "home", "/gang/GANGManager.js", 1);
+            if (pid === 0 || pid1 === 0) {
+              ns.tprint("❌ Failed to start Manager. Check RAM or script path.");
+            } else {
+                 ns.tprint(`🚀 Gang Launcher started with PID ${pid}, Blade Prep Launcher started with PID ${pid1}`);
+                 ns.scriptKill(ns.getScriptName(), "home")
+            }
+
         } else if (karma <= -50000) {
             ns.print(`⚠️ Karma is low (${karma.toFixed(2)}). Gang unlock approaching...`);
         }

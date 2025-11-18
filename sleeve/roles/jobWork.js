@@ -1,5 +1,5 @@
 /** @param {NS} ns **/
-export async function run(ns, sleeveNum) {
-    const company = "MegaCorp";
+export async function run(ns, sleeveNum, params = {}) {
+    const company = params.company ?? "MegaCorp";
     await ns.sleeve.setToCompanyWork(sleeveNum, company);
 }

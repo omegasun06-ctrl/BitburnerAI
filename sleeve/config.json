@@ -1,5 +1,5 @@
 {
-  "0": "factionWork",
-  "1": "jobWork",
-  "2": "shock"
+  "0": {"role":"bladeburner", "actionType":"General", "action":"Training"},
+  "1": {"role":"bladeburner", "actionType":"General", "action":"Recruitment"},
+  "2": {"role":"bladeburner", "actionType":"General", "action":"Field Analysis"}
 }

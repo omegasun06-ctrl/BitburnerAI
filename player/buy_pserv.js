@@ -1,6 +1,13 @@
 /** @param {NS} ns **/
 export async function main(ns) {
-  const targetRam = parseInt(ns.args[0]);
+
+  let targetRam = 0;
+  const initRam = parseInt(ns.args[0]);
+  if (initRam > 30 )
+  {targetRam = initRam}
+  else
+  {targetRam = Math.pow(2, initRam)}
+  
   if (isNaN(targetRam) || targetRam <= 0) {
     ns.tprint("ERROR: Please provide a valid RAM value as the first argument.");
     return;
@@ -46,11 +53,14 @@ for (const server of pservers) {
 }
 
 const breakdown = Object.keys(ramCounts)
-    .sort((a, b) => b - a)
-    .map(ram => `${ram}:${ramCounts[ram]}`)
-    .join("  ");
+  .sort((a, b) => b - a)
+  .map(ram => {
+    const exp = Math.log2(Number(ram));
+    return `${ram}:${ramCounts[ram]} (${exp})`;
+  })
+  .join("  ");
 
-ns.tprint(`📊 Current Servers: ${breakdown}   # servers to be upgraded: ${upgradeNeeded}`);
+ns.tprint(`📊 Current Servers: ${breakdown}  # servers to be upgraded: ${upgradeNeeded}`);
 
   while (true) {
     pservers = ns.getPurchasedServers();

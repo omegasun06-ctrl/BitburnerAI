@@ -1,5 +1,5 @@
 const argsSchema = [
-	['disable-equipment-buying', true]
+	['disable-equipment-buying', false]
 ];
 
 // noinspection JSUnusedLocalSymbols
@@ -18,8 +18,16 @@ export async function main(ns) {
 	const options = ns.flags(argsSchema);
 	const disableEquipmentBuying = options['disable-equipment-buying'];
 	if (!ns.gang.inGang()) {
-		ns.tprint(`You need to join a gang first`);
-		return;
+		
+ if (canJoinSlumSnakes && ns.gang.createGang("Slum Snakes")) {
+        ns.tprint("Joined Slum Snakes gang!");
+    } else if (canJoinTetrads && ns.gang.createGang("Tetrads")) {
+        ns.tprint("Joined Tetrads gang!");
+    } else {
+        ns.tprint("Cannot join a gang. Make sure you're in the right BitNode and have the correct faction.");
+        return;
+    }
+
 	}
 	let counter = 0;
 	// noinspection InfiniteLoopJS

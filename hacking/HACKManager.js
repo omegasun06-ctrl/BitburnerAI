@@ -1,27 +1,29 @@
 /** @param {NS} ns **/
-import { contractor } from "/contracts/contractor.js";
+//import { contractor } from "/contracts/contractor.js";
 import { crawl } from "/old_scripts/hacking/crawler.js"
 import { HackPlanner } from "/hacking/planner.js";
-import { getAllServers } from "/utils"
+import { getAllServers, suppressLogs } from "/utils"
 
 export async function main(ns) {
-  ns.disableLog("getServerMaxRam")
-  ns.disableLog("getServerUsedRam")
-  ns.disableLog("getServerMoneyAvailable");
-  ns.disableLog("getServerMaxMoney");
-  ns.disableLog("getServerMinSecurityLevel");
-  ns.disableLog("getServerNumPortsRequired");
-  ns.disableLog("getServerRequiredHackingLevel");
-  ns.disableLog("scan");
-  ns.disableLog("sleep");
-  ns.disableLog("exec");
+ const disabledLogs = ["getServerMaxRam", 
+                  "getServerUsedRam",
+                  "getServerMoneyAvailable",
+                  "getServerMaxMoney",
+                  "getServerMinSecurityLevel",
+                  "getServerNumPortsRequired",
+                  "getServerRequiredHackingLevel",
+                  "scan",
+                  "sleep",
+                  "exec"
+                  ] 
+  suppressLogs(ns, disabledLogs );
 
   const scriptDir = "/daemons/";
   const scripts = ["hack.js", "grow.js", "weaken.js"];
   const batcherScript = "/hacking/batcher.js";
   const primeScript = "/hacking/prime_target.js";
   const plannerFile = "/logs/batchPlans.txt";
-  //const logfile = "/logs/HACKManager.txt";
+  const logfile = "/logs/hacked_servers.txt";
   
   const loopDelay = 10000;
   const batchSpacing = 10;
@@ -29,7 +31,7 @@ export async function main(ns) {
   const hysteresis = 0.20;
   const minHoldMs = 2 * 60 * 1000;
 
-  //ns.rm(logfile, "home");
+  ns.rm(plannerFile, "home");
 
   let loopCount = 0;
   let plannerTargets = [];
@@ -123,7 +125,8 @@ export async function main(ns) {
     const supportServers = allServers.filter(s =>
       !playerServers.includes(s) &&
       ns.hasRootAccess(s) &&
-      ns.getServerMaxRam(s) > 0
+      ns.getServerMaxRam(s) > 0 &&
+      !s.startsWith('hacknet-server-')
     );
 
     for (const server of playerServers) {
@@ -204,7 +207,7 @@ export async function main(ns) {
       const maxRam = ns.getServerMaxRam(server);
       const usedRam = ns.getServerUsedRam(server);
       let freeRam = maxRam - usedRam;
-
+      ns.write(logfile, activeTarget.server, "w");
       const moneyAvailable = ns.getServerMoneyAvailable(activeTarget.server);
       const moneyMax = activeTarget.maxMoney;
       if (moneyAvailable < moneyMax * 0.95) {
@@ -274,7 +277,7 @@ export async function main(ns) {
     loopCount++;
     ns.print(`🔁 Sleeping for ${loopDelay / 1000} seconds...`);
     await ns.sleep(loopDelay);
-    contractor(ns);
+    //contractor(ns);
     await crawl(ns);
     await updatePlannerFile(ns);
   }

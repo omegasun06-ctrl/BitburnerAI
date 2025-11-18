@@ -1,22 +1,25 @@
 /** @param {NS} ns **/
 export function validateConfig(ns, config) {
-    
-const validRoles = [
-    'synchronize',
-    'crime',
-    'gym',
-    'uni',
-    'factionWork',
-    'bladeburner',
-    'jobwork',
-    'shock',
-    'gang'
-];
- // Add more as needed
-    return Object.entries(config).every(([id, role]) =>
-        !isNaN(id) && validRoles.includes(role)
-    );
+    const validRoles = [
+        'synchronize',
+        'crime',
+        'gym',
+        'uni',
+        'factionWork',
+        'bladeburner',
+        'jobWork',
+        'shock',
+        'gang'
+    ];
+
+    return Object.entries(config).every(([id, entry]) => {
+        if (isNaN(id)) return false;
+        if (typeof entry === "string") return validRoles.includes(entry);
+        if (typeof entry === "object" && entry.role) return validRoles.includes(entry.role);
+        return false;
+    });
 }
+
 
 /** @param {NS} ns **/
 export function getSleeveInfo(ns) {
@@ -30,7 +33,7 @@ export function getSleeveInfo(ns) {
 
 import { roleRegistry } from "./roleRegistry.js";
 /** @param {NS} ns **/
-export async function assignRole(ns, sleeveNum, role) {
+export async function assignRole(ns, sleeveNum, role, params) {
     const roleFn = roleRegistry[role];
     if (!roleFn) {
         ns.tprint(`❌ Role '${role}' not found in registry.`);
@@ -38,7 +41,7 @@ export async function assignRole(ns, sleeveNum, role) {
     }
 
     try {
-        await roleFn(ns, sleeveNum);
+        await roleFn(ns, sleeveNum, params);
     } catch (err) {
         ns.tprint(`❌ Error running role '${role}' for sleeve ${sleeveNum}: ${err}`);
     }

@@ -37,7 +37,8 @@ export async function main(ns) {
   const supportServers = getAllServers(ns).filter(s =>
     !playerServers.includes(s) &&
     ns.hasRootAccess(s) &&
-    ns.getServerMaxRam(s) > 0
+    ns.getServerMaxRam(s) > 0 &&
+    !s.startsWith('hacknet-server-')
   );
   const servers = playerServers.concat(supportServers);
   let weakenLeft = weakenThreads;

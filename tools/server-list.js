@@ -79,9 +79,11 @@ export class ServerList {
     }
 
     getHackableServers(player) {
-        return [...this].filter((server)=>(
+    return [...this]
+      .filter((server) => server !== null)
+      .filter((server) => server.canBeHacked(player));
             server.canBeHacked(player)
-        ));
+        ;
     }
 
     getHacknetServers() {
@@ -258,7 +260,8 @@ export function getAllHostnames(ns) {
             }
         }
     }
-    return scanned;
+  const excluded = new Set(['darkweb', 'home']);
+  return new Set([...scanned].filter(h => !excluded.has(h)));
 }
 
 const DEFAULT_SCRIPT_RAM = 1.75;
