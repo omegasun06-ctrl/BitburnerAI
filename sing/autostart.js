@@ -4,11 +4,10 @@
 export async function main(ns) {
   //0. kill all current running scripts on home.
   ns.killall();
-   // 1. Run the crawler script
-  //ns.run("/old_scripts/hacking/crawler.js");
   // 1. If hacking level low, connect to foodnstuff and nuke it
-  if (ns.getHackingLevel() <= 20) {
+  if (ns.getHackingLevel() <= 50) {
     {
+      ns.run("/hacking/worm.js", 1, "foodnstuff")
       ns.run("/daemon/hack.js", 10, "foodnstuff")
     }
   }
@@ -44,16 +43,21 @@ export async function main(ns) {
     }
   }
   // 6. Run the job manager if hacking is hjigh enoug
-  if (ns.getHackingLevel() >= 225 && ns.gang.inGang()) {
-    //ns.run('/sing/jobs/JOBManager.js', 1, 'NWO', 'IT');
+  const hasBladeSimulacrum = ns.singularity.getOwnedAugmentations().includes("Blade's Simulacrum");
+   const isGrafting = ns.args[0] || false;
+  if (ns.getHackingLevel() >= 225 && ns.gang.inGang() && hasBladeSimulacrum && !isGrafting) {
+    ns.run('/sing/jobs/JOBManager.js', 1, 'NWO', 'IT');
   }
   // 7. Run the bladeManager
-  if (ns.bladeburner.inBladeburner()) {
+  if (ns.bladeburner.inBladeburner() && !isGrafting) {
     ns.run('/blade/BLADEManager.js');
+  }
+  if (!ns.bladeburner.inBladeburner() && !isGrafting){
+    ns.run('/blade/BLADEPrep.js');
   }
   // 8. If stock APIs are unlocked start stock manager
   if (ns.stock.hasWSEAccount() && ns.stock.hasTIXAPIAccess()) {
-    //ns.run("/stock-market/STOCKManager.js");
+      ns.run("/stock-market/STOCKManager.js");
   }
 
   // 9. Buy the maximum HOME RAM it can
@@ -64,16 +68,18 @@ export async function main(ns) {
   }
 
   // 10. Run the player server startup with argument 2
-  ns.run("/player/buy_pserv.js", 1, 2);
+  ns.run("/player/buy_pserv.js", 1, '2');
   // 11. Run Player Server manager
   ns.run("/player/PSManager.js");
 
 
   // 12. Run hacknet Manager
-  if (ns.hacknet.numNodes() === 0 ){
-  ns.run("/old_scripts/autoNet.js", 1, 5, 25, 1, 1)
-  }
-  ns.run("/hacknet/HNManager.js");
+  ns.run("/hacknet/HNServManager.js");
+  ns.run("/hacknet/HASHManager.js");
+
+  //13. run Corp MANAGER
+  //ns.run("/corp/CROPManager.js");
+  ns.run("/gift/GIFTManager.js");
   
   // 13. Run hack manager
   if (ns.fileExists("Formulas.exe", "home")) {

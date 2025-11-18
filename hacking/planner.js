@@ -85,25 +85,32 @@ export async function main(ns) {
 export class HackPlanner extends ServerList {
   ServerClass = HackableServer;
 
+  loadServer(hostname) {
+    if (!this.ns.serverExists(hostname)) {
+      this.ns.print(`Skipping invalid server: ${hostname}`);
+      return null;
+    }
+    return new this.ServerClass(this.ns, hostname);
+  }
+
   mostProfitableServers(params, hostnames = []) {
     const { ns } = this;
     let servers;
     if (hostnames.length > 0) {
-      servers = hostnames.map((hostname) => this.loadServer(hostname));
-    }
-    else {
-
+      servers = hostnames
+        .map((hostname) => this.loadServer(hostname))
+        .filter((s) => s !== null);
+    } else {
       servers = this.getHackableServers(ns.getPlayer()).filter(s => {
         const processes = ns.ps(s.hostname);
         return !processes.some(p =>
           ["batcher.js", "prime_target.js", "weaken.js", "grow.js", "hack.js"].includes(p.filename)
         );
       });
-
     }
+
     const plans = [];
     for (const server of servers) {
-      // const bestParams = server.mostProfitableParamsSync(params);
       const batchCycle = server.planBatchCycle(params);
       batchCycle.prepTime = server.estimatePrepTime(params);
       const ONE_HOUR = 60 * 60 * 1000;
@@ -114,62 +121,14 @@ export class HackPlanner extends ServerList {
       server.reload();
       plans.push(batchCycle);
     }
+
     const bestPlans = plans.sort((a, b) => (
       b.moneyInNextHour - a.moneyInNextHour
     ));
     return bestPlans;
   }
-
-  reportMostProfitableServers(params) {
-    const { ns } = this;
-    const columns = [
-      { header: "Hostname", field: "server.hostname", width: 18, align: "left" },
-      { header: "Parameters", field: "condition", width: 16, align: "left", truncate: true },
-      { header: "Prep Time", field: "prepTime", format: drawTable.time },
-      { header: "RAM Used", field: "totalRamBytes", format: ns.nFormat, formatArgs: ["0.0 b"] },
-      { header: "  $ / sec", field: "moneyPerSec", format: ns.nFormat, formatArgs: ["$0.0a"] },
-      // {header: "Max threads/job", field: "maxThreadsPerJob"}
-      // {header: "$/sec/GB", field: "moneyPerSecPerGB", format: ns.nFormat, formatArgs: ["$0.00a"]},
-    ];
-    columns.title = `Most Profitable Servers to Hack (${ns.nFormat(params.maxTotalRam * 1e9, "0.0 b")} total RAM)`;
-    const rows = this.mostProfitableServers(params);
-    eval("window").mostProfitableServers = rows;
-    return drawTable(columns, rows);
-  }
-
-  reportBatchLengthComparison(server, params) {
-    const { ns } = this;
-    server = new HackableServer(ns, server);
-    const columns = [
-      { header: "Condition", field: "condition", width: 28, align: "left", truncate: true },
-      // {header: "Duration", field: "duration", format: drawTable.time},
-      { header: "Batches", field: "numBatchesAtOnce" },
-      { header: "Max t", field: "maxThreadsPerJob" },
-      { header: "RAM Used", field: "totalRamBytes", format: ns.nFormat, formatArgs: ["0.0 b"] },
-      { header: "  $ / sec", field: "moneyPerSec", format: ns.nFormat, formatArgs: ["$0.0a"] },
-      // {header: "$/sec/GB", field: "moneyPerSecPerGB", format: ns.nFormat, formatArgs: ["$0.00a"]},
-    ];
-    columns.title = `Comparison of batches (${ns.nFormat(params.maxTotalRam * 1e9, "0.0 b")} total RAM, max ${params.maxThreadsPerJob} threads per job)`;
-    const estimates = server.sweepParameters(params);
-    const estimatesByMoneyPct = {}
-    for (const estimate of estimates) {
-      estimate.totalRamBytes = estimate.peakRam * 1e9;
-      estimatesByMoneyPct[estimate.params.moneyPercent] ||= [];
-      estimatesByMoneyPct[estimate.params.moneyPercent].push(estimate);
-    }
-    const bestEstimates = {};
-    for (const moneyPercent of Object.keys(estimatesByMoneyPct)) {
-      const estimates = estimatesByMoneyPct[moneyPercent].sort((a, b) => (
-        b.moneyPerSec - a.moneyPerSec
-      ));
-      for (const estimate of estimates) {
-        bestEstimates[estimate.condition] = estimate;
-        break;
-      }
-    }
-    return drawTable(columns, Object.values(bestEstimates));
-  }
 }
+
 
 /**
  * A HackableServer tracks the state of a server through multiple hacking operations.

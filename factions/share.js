@@ -1,4 +1,5 @@
-import { copyScriptsToAll, findPlaceToRun, getAccessibleServers, getFreeRams, getScripts } from '/utils.js';
+import { copyScriptsToAll, findPlaceToRun, getAllServers, getFreeRams } from '/utils.js';
+import{ getScripts  } from '/extendedUtils.js'
 
 /**
  *
@@ -12,7 +13,7 @@ export async function main(ns) {
   let i = 0;
   // noinspection InfiniteLoopJS
   while (true) {
-    const servers = getAccessibleServers(ns, true); // true = only non-home, non-purchased
+    const servers = getAllServers(ns, true); // true = only non-home, non-purchased
     const freeRams = getFreeRams(ns, servers);
     findPlaceToRun(ns, script, threads, freeRams, i++);
     await ns.sleep(5000);

@@ -18,6 +18,7 @@ export function contractor(ns) {
   for (let server of getServers(ns)) {
     const files = ns.ls(server, '.cct');
     for (let file of files) {
+      ns.print(`File: ${file}   Server: ${server}`)
       const contract = ns.codingcontract.getContractType(file, server);
       const data = ns.codingcontract.getData(file, server);
       let solution;
@@ -121,15 +122,18 @@ export function contractor(ns) {
         case 'Encryption II: Vigenère Cipher':
           solution = vigenere(data);
           break;
+        case 'Square Root...':
+          solution = solveBigIntSqrtContract(data);
+          break;
         default:
-          ns.print(`Found ${file} on ${server} of type: ${contract}. This does not have a solver yet.`);
+          ns.print(`${contract}: Found ${file} on ${server} of type: ${type} . This does not have a solver yet.`);
           continue;
       }
       const result = ns.codingcontract.attempt(solution, file, server, { returnReward: true });
       if (result) {
         printBoth(ns, `Solved ${file} on ${server} of type: ${contract}. ${result}.`);
       } else {
-        printBoth(ns, `Could not solve ${file} on ${server} of type: ${contract}...`);
+        printBoth(ns, `Could not solve ${file} on ${server} of type: ${contract} | ${type}`);
         printBoth(ns, `Disabling contractor...`);
         return false;
       }
@@ -954,17 +958,39 @@ function gridCompression(data) {
 }
 
 
+/** Solves BigInt square root contract to nearest integer */
+
+export function solveBigIntSqrtContract(data) {
+  const n = BigInt(data);
+  let low = 0n, high = n;
+  while (low <= high) {
+    const mid = (low + high) >> 1n;
+    const midSquared = mid * mid;
+    if (midSquared === n) return mid.toString();
+    else if (midSquared < n) low = mid + 1n;
+    else high = mid - 1n;
+  }
+  return high.toString();
+}
+
+
+
 
 function squareRoot(n) {
-  // Convert BigInt to Number safely if needed
   if (typeof n === 'bigint') {
-    // If n is too large for Number, use Newton's method with BigInt
+    // Newton's method for BigInt
     let x = n;
     let y = (x + 1n) / 2n;
     while (y < x) {
       x = y;
       y = (x + n / x) / 2n;
     }
+
+    // Round up if x*x < n
+    if (x * x < n) {
+      x += 1n;
+    }
+
     return x.toString(); // Return as string for Bitburner
   }
 
@@ -983,8 +1009,14 @@ function squareRoot(n) {
     iterations++;
   }
 
+  // Round up if low * low < n
+  if (low * low < n) {
+    low = Math.ceil(low);
+  }
+
   return low.toFixed(10); // Return as string with fixed precision
 }
+
 
 
 

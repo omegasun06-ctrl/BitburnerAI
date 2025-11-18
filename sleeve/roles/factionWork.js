@@ -1,6 +1,6 @@
-/** @param {NS} ns **/
-export async function run(ns, sleeveNum) {
-    const faction = "CyberSec";
-    const workType = "hacking";
-    await ns.sleeve.setToFactionWork(sleeveNum, faction, workType);
+
+export async function run(ns, sleeveNum, params = {}) {
+  const faction = params.faction ?? "CyberSec";
+  const workType = params.workType ?? "hacking";
+  await ns.sleeve.setToFactionWork(sleeveNum, faction, workType);
 }

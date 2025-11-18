@@ -1,5 +1,5 @@
 /** @param {NS} ns **/
-export async function run(ns, sleeveNum) {
+export async function run(ns, sleeveNum, params={}) {
     const sleeve = ns.sleeve.getSleeve(sleeveNum);
 
     if (sleeve.shock > 0) {

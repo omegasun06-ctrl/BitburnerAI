@@ -1,4 +1,5 @@
-import {copyScriptsToAll, findPlaceToRun, getAccessibleServers, getFreeRams, getScripts} from 'utils.js';
+import {copyScriptsToAll, findPlaceToRun, getAccessibleServers, getFreeRams} from 'utils.js';
+import { getScripts } from '/extendedUtils.js'
 
 /**
  *
@@ -6,6 +7,7 @@ import {copyScriptsToAll, findPlaceToRun, getAccessibleServers, getFreeRams, get
  * @returns {Promise<void>}
  */
 export async function main(ns) {
+  ns.exec("/hacking/worm.js", "joesguns");
 	await copyScriptsToAll(ns);
 	const threads = Number.MAX_SAFE_INTEGER;
 	const scripts = getScripts();
